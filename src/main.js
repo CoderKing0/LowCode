@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 
 import 'normalize.css'
 import '@/assets/css/index.css'
+import '@/assets/icon-font/icon-custom.css'
 
 import App from './App.vue'
 import router from './router'

@@ -1,5 +1,5 @@
 <template>
-  <div class="configuration-area">
+  <div class="configuration-area content-area-height">
     <h1>configuration-area</h1>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <style lang="less" scoped>
 .configuration-area {
   width: 260px;
-  height: 100vh;
-  background-color: #f9f9fa;
+  // background-color: #f9f9fa;
+  background-color: skyblue;
 }
 </style>

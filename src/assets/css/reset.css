@@ -25,6 +25,6 @@ img {
   vertical-align: middle;
 }
 
-button:focus {
+input:focus {
   outline: none;
 }
