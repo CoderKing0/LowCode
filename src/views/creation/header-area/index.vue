@@ -20,17 +20,17 @@
       />
       <span
         v-show="!isSettingFormTitle"
-        class="iconfont icon-bianxie"
+        class="iconfont icon-edit"
         @click="handleSetFormTitle"
       ></span>
     </div>
     <div class="right">
       <div class="preview" @click="handlePreview">
-        <span class="iconfont icon-zitiyulan"></span>
+        <span class="iconfont icon-preview"></span>
         预览
       </div>
       <div class="publish" @click="handlePublish">
-        <span class="iconfont icon-fabu"></span>
+        <span class="iconfont icon-publish"></span>
         发布
       </div>
     </div>
@@ -71,6 +71,7 @@ const handlePublish = () => {
   align-content: center;
   height: 60px;
   padding: 0 20px;
+  border-bottom: 1px solid #dedfe0;
 
   .left,
   .right {
@@ -86,6 +87,12 @@ const handlePublish = () => {
       height: 30px;
       border-radius: 50%;
       margin-right: 10px;
+    }
+
+    .name {
+      background: linear-gradient(to right, red, blue);
+      background-clip: text;
+      color: transparent;
     }
   }
 

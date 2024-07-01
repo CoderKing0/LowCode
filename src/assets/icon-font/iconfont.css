@@ -14,70 +14,70 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-bianxie:before {
+.icon-edit:before {
   content: '\e601';
 }
 
-.icon-zitiyulan:before {
+.icon-preview:before {
   content: '\ec86';
 }
 
-.icon-fabu:before {
+.icon-publish:before {
   content: '\e61e';
 }
 
-.icon-tupian:before {
+.icon-image:before {
   content: '\e889';
 }
 
-.icon-danxuan-xuanzhong:before {
+.icon-radioButton:before {
   content: '\e6a4';
 }
 
-.icon-checkDropdown:before {
+.icon-selectMultiBox:before {
   content: '\e655';
 }
 
-.icon-riqi:before {
+.icon-date:before {
   content: '\e616';
 }
 
-.icon-shuomingwenzi:before {
+.icon-illustrationText:before {
   content: '\e603';
 }
 
-.icon-shuzishurukuang:before {
+.icon-editInputNumber:before {
   content: '\e66d';
 }
 
-.icon-pingfen:before {
+.icon-rate:before {
   content: '\e6d8';
 }
 
-.icon-fuwenben:before {
+.icon-richtext:before {
   content: '\e615';
 }
 
-.icon-duoxuan:before {
+.icon-checkList:before {
   content: '\e602';
 }
 
-.icon-zibiaodan:before {
+.icon-subForm:before {
   content: '\e651';
 }
 
-.icon-danhangshurukuang:before {
+.icon-editInput:before {
   content: '\e619';
 }
 
-.icon-a-ziyuan30:before {
+.icon-selectBox:before {
   content: '\e66c';
 }
 
-.icon-huadongtiao:before {
+.icon-slider:before {
   content: '\e727';
 }
 
-.icon-duohangshuru:before {
+.icon-editTextArea:before {
   content: '\e643';
 }

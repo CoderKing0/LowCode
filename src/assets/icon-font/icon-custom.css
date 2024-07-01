@@ -1,10 +1,10 @@
 @import url(./iconfont.css);
-.icon-zitiyulan,
-.icon-fabu {
+.icon-preview,
+.icon-publish {
   color: #006ce2;
 }
 
-.icon-bianxie {
+.icon-edit {
   font-size: 20px;
   color: #c0c0c3;
 }

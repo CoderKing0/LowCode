@@ -9,7 +9,6 @@
 <style lang="less" scoped>
 .configuration-area {
   width: 260px;
-  // background-color: #f9f9fa;
-  background-color: skyblue;
+  background-color: #f9f9fa;
 }
 </style>
