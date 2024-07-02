@@ -22,9 +22,17 @@ const levelStyle = {
     margin: '20px 0',
     textAlign: 'center'
   },
-  secondLevel: 'font-size: 17px;',
+  secondLevel: {
+    marginBottom: '-10px',
+    fontSize: '18px',
+    fontWeight: 'bold'
+  },
   thirdLevel: {
     fontSize: '15px',
+    fontWeight: 'bold'
+  },
+  sixthLevel: {
+    fontSize1: '14px',
     fontWeight: 'bold'
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="material-area content-area-height">
-    <Tabs :tabs-data="['内容', '样式']" @item-click="handleTabClick" />
+    <TabBar :tabs-data="['内容', '样式']" @item-click="handleTabClick" />
     <div v-if="curIndex === 0" class="field-list">
       <el-scrollbar>
-        <template v-for="item in fieldsData" :key="item.group">
+        <template v-for="item in materialFieldsData" :key="item.group">
           <FieldWrapper :field-data="item" />
         </template>
       </el-scrollbar>
@@ -18,10 +18,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { fieldsData } from '../data'
-import Tabs from '@/components/tabs/index.vue'
-import FieldWrapper from '@/components/field-wrapper/index.vue'
-import StyleWrapper from '@/components/style-wrapper/index.vue'
+import { materialFieldsData } from '../data'
+import TabBar from '@/components/tab-bar/index.vue'
+import FieldWrapper from '@/components/field/field-wrapper/index.vue'
+import StyleWrapper from '@/components/style/style-wrapper/index.vue'
 
 const curIndex = ref(0)
 const handleTabClick = (index) => {

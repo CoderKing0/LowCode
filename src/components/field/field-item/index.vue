@@ -25,6 +25,7 @@ defineProps({
   font-size: 14px;
   cursor: move;
   box-sizing: border-box;
+  border: 1px dashed transparent;
 
   &:hover {
     border-radius: 4px;

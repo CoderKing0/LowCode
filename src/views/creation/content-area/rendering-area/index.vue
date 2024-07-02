@@ -2,25 +2,44 @@
   <div class="rendering-area content-area-height">
     <div class="draggable-container">
       <TitleArea :title="formTitle" level="firstLevel" />
-      <Draggable class="draggable" group="shared" @add="handleAddCompt">
-        <div v-for="item in curSelectedComptList" :key="item.compt">{{ item.title }}</div>
-      </Draggable>
-      <div class="empty-tip">请从左侧拖拽来添加字段</div>
+      <div class="scroll-area">
+        <Draggable class="draggable" group="shared" @add="handleAddCompt">
+          <template v-for="item in curSelectedComptList" :key="item.compt">
+            <FieldComptWrapper>
+              <component
+                :is="componentMap.get(item.compt)"
+                :itemData="item"
+                @click="handleComptClick(item)"
+              />
+            </FieldComptWrapper>
+          </template>
+        </Draggable>
+        <div class="empty-tip">请从左侧拖拽来添加字段</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import useCreationStore from '@/stores/creation'
 import { storeToRefs } from 'pinia'
+import useCreationStore from '@/stores/creation'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
+import { componentMap } from '@/components/field-compt/fieldComptMap'
+import FieldComptWrapper from '@/components/field-compt/field-compt-wrapper/index.vue'
 
 const creationStore = useCreationStore()
 
 const { curSelectedComptList, formTitle } = storeToRefs(creationStore)
 
+// 拿到拖拽过来的组件
 const handleAddCompt = (curCompt) => {
   creationStore.setCurSelectedComptList(undefined, curCompt.newIndex)
+  creationStore.setCurDraggingCompt(null)
+}
+
+// 点击组件
+const handleComptClick = (curCompt) => {
+  creationStore.setCurClickingCompt(curCompt)
 }
 </script>
 
@@ -38,6 +57,7 @@ const handleAddCompt = (curCompt) => {
     width: 75%;
     margin: 30px auto 0;
     padding: 0 20px;
+    box-sizing: border-box;
     background-color: #fff;
 
     &::before {
@@ -46,6 +66,11 @@ const handleAddCompt = (curCompt) => {
       height: 30px;
       margin: 0 -20px;
       background-color: var(--primary-color);
+    }
+
+    .scroll-area {
+      height: calc(100% - 123px);
+      overflow-y: auto;
     }
 
     .draggable {

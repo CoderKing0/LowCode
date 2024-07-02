@@ -1,11 +1,11 @@
-const fieldsData = [
+const materialFieldsData = [
   {
     name: '基础字段',
     group: 'base',
     list: [
-      { compt: 'editInput', title: '单行输入框', icon: 'icon-editInput' },
-      { compt: 'editTextArea', title: '多行输入框', icon: 'icon-editTextArea' },
-      { compt: 'editInputNumber', title: '数字输入框', icon: 'icon-editInputNumber' },
+      { compt: 'editInput', title: '单行输入', icon: 'icon-editInput' },
+      { compt: 'editTextArea', title: '多行输入', icon: 'icon-editTextArea' },
+      { compt: 'editInputNumber', title: '数字输入', icon: 'icon-editInputNumber' },
       { compt: 'slider', title: '滑动条', icon: 'icon-slider' },
       { compt: 'rate', title: '评分', icon: 'icon-rate' },
       { compt: 'illustrationText', title: '说明文字', icon: 'icon-illustrationText' },
@@ -27,4 +27,4 @@ const fieldsData = [
   }
 ]
 
-export { fieldsData }
+export { materialFieldsData }

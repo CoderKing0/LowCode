@@ -10,8 +10,8 @@
       <template v-for="item in fieldData.list" :key="item.compt">
         <FieldItem
           :itemData="item"
-          @dragstart="handleStartDrag(item)"
-          @click="handleItemClick(item)"
+          @dragstart="handleAddComptData(item)"
+          @click="handleAddComptData(item, false)"
         />
       </template>
     </Draggable>
@@ -19,9 +19,11 @@
 </template>
 
 <script setup>
-import TitleArea from '../title-area/index.vue'
-import FieldItem from '../field-item/index.vue'
+import _ from 'lodash'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
+import renderingFieldsDataMap from '@/components/field-compt/fieldComptData'
+import TitleArea from '@/components/title-area/index.vue'
+import FieldItem from '../field-item/index.vue'
 import useCreationStore from '@/stores/creation'
 
 defineProps({
@@ -33,13 +35,16 @@ defineProps({
 
 const creationStore = useCreationStore()
 
-const handleStartDrag = (curDragData) => {
-  creationStore.setCurDraggingCompt(curDragData)
-}
+// 为content将要渲染的列表中添加组件数据
+const handleAddComptData = (curCompt, isDrag = true) => {
+  const comptData = _.cloneDeep(renderingFieldsDataMap[curCompt.compt])
+  comptData.compt = curCompt.compt
 
-const handleItemClick = (curClickData) => {
-  // 点击物料，将其添加到渲染区的渲染列表中
-  creationStore.setCurSelectedComptList(curClickData)
+  if (isDrag) {
+    creationStore.setCurDraggingCompt(comptData)
+  } else {
+    creationStore.setCurSelectedComptList(comptData)
+  }
 }
 
 /**

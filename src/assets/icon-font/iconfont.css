@@ -1,83 +1,95 @@
 @font-face {
-  font-family: 'iconfont'; /* Project id 4603118 */
-  src:
-    url('iconfont.woff2?t=1719566488097') format('woff2'),
-    url('iconfont.woff?t=1719566488097') format('woff'),
-    url('iconfont.ttf?t=1719566488097') format('truetype');
+  font-family: "iconfont"; /* Project id 4603118 */
+  src: url('iconfont.woff2?t=1719834559440') format('woff2'),
+       url('iconfont.woff?t=1719834559440') format('woff'),
+       url('iconfont.ttf?t=1719834559440') format('truetype');
 }
 
 .iconfont {
-  font-family: 'iconfont' !important;
+  font-family: "iconfont" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-edit:before {
-  content: '\e601';
+.icon-setting:before {
+  content: "\e60d";
 }
 
-.icon-preview:before {
-  content: '\ec86';
+.icon-copy:before {
+  content: "\ec7a";
 }
 
-.icon-publish:before {
-  content: '\e61e';
+.icon-delete:before {
+  content: "\e61a";
+}
+
+.icon-bianxie:before {
+  content: "\e601";
+}
+
+.icon-zitiyulan:before {
+  content: "\ec86";
+}
+
+.icon-fabu:before {
+  content: "\e61e";
 }
 
 .icon-image:before {
-  content: '\e889';
+  content: "\e889";
 }
 
 .icon-radioButton:before {
-  content: '\e6a4';
+  content: "\e6a4";
 }
 
 .icon-selectMultiBox:before {
-  content: '\e655';
+  content: "\e655";
 }
 
 .icon-date:before {
-  content: '\e616';
+  content: "\e616";
 }
 
 .icon-illustrationText:before {
-  content: '\e603';
+  content: "\e603";
 }
 
 .icon-editInputNumber:before {
-  content: '\e66d';
+  content: "\e66d";
 }
 
 .icon-rate:before {
-  content: '\e6d8';
+  content: "\e6d8";
 }
 
 .icon-richtext:before {
-  content: '\e615';
+  content: "\e615";
 }
 
 .icon-checkList:before {
-  content: '\e602';
+  content: "\e602";
 }
 
 .icon-subForm:before {
-  content: '\e651';
+  content: "\e651";
 }
 
 .icon-editInput:before {
-  content: '\e619';
+  content: "\e619";
 }
 
 .icon-selectBox:before {
-  content: '\e66c';
+  content: "\e66c";
 }
 
 .icon-slider:before {
-  content: '\e727';
+  content: "\e727";
 }
 
 .icon-editTextArea:before {
-  content: '\e643';
+  content: "\e643";
 }
+

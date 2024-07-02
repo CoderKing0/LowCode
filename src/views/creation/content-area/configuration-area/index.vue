@@ -1,14 +1,44 @@
 <template>
   <div class="configuration-area content-area-height">
-    <h1>configuration-area</h1>
+    <div class="header">
+      <TitleArea :title="title" level="secondLevel" />
+      <span class="iconfont icon-setting"></span>
+    </div>
+    <component :is="curCompt" :itemData="clickingCompt" />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed, toRefs } from 'vue'
+import useCreationStore from '@/stores/creation'
+import TitleArea from '@/components/title-area/index.vue'
+import { componentPanelMap } from '@/components/field-compt/fieldComptMap'
+
+const creationStore = useCreationStore()
+
+const { clickingCompt } = toRefs(creationStore)
+const title = computed(() => clickingCompt?.value?.title || '字段属性')
+// 通过当前点击的组件，获取对应的配置组件
+const curCompt = computed(() => componentPanelMap.get(clickingCompt?.value?.compt))
+</script>
 
 <style lang="less" scoped>
 .configuration-area {
   width: 260px;
   background-color: #f9f9fa;
+
+  .header {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #dedfe0;
+
+    .iconfont {
+      margin-left: 8px;
+      margin-top: 3px;
+    }
+  }
 }
 </style>
