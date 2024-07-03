@@ -3,17 +3,19 @@
     <div class="draggable-container">
       <TitleArea :title="formTitle" level="firstLevel" />
       <div class="scroll-area">
-        <Draggable class="draggable" group="shared" @add="handleAddCompt">
-          <template v-for="item in curSelectedComptList" :key="item.compt">
-            <FieldComptWrapper>
-              <component
-                :is="componentMap.get(item.compt)"
-                :itemData="item"
-                @click="handleComptClick(item)"
-              />
-            </FieldComptWrapper>
-          </template>
-        </Draggable>
+        <el-scrollbar class="scroll">
+          <Draggable class="draggable" group="shared" @add="handleAddCompt">
+            <template v-for="item in curSelectedComptList" :key="item.compt">
+              <FieldComptWrapper>
+                <component
+                  :is="componentMap.get(item.compt)"
+                  :itemData="item"
+                  @click="handleComptClick(item)"
+                />
+              </FieldComptWrapper>
+            </template>
+          </Draggable>
+        </el-scrollbar>
         <div class="empty-tip">请从左侧拖拽来添加字段</div>
       </div>
     </div>
@@ -56,21 +58,22 @@ const handleComptClick = (curCompt) => {
   .draggable-container {
     width: 75%;
     margin: 30px auto 0;
-    padding: 0 20px;
-    box-sizing: border-box;
     background-color: #fff;
 
     &::before {
       content: '';
       display: block;
       height: 30px;
-      margin: 0 -20px;
       background-color: var(--primary-color);
     }
 
     .scroll-area {
       height: calc(100% - 123px);
-      overflow-y: auto;
+
+      .scroll {
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
     }
 
     .draggable {
