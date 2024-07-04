@@ -1,11 +1,11 @@
 <template>
   <div class="compt">
-    <InputBase :itemData="itemData" />
+    <InputComptBase :itemData="itemData" />
   </div>
 </template>
 
 <script setup>
-import InputBase from '../input-base/index.vue'
+import InputComptBase from '../input-compt-base/index.vue'
 
 defineProps({
   itemData: {

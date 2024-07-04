@@ -42,6 +42,7 @@ const handleAddCompt = (curCompt) => {
 // 点击组件
 const handleComptClick = (curCompt) => {
   creationStore.setCurClickingCompt(curCompt)
+  creationStore.setCurClickingComptTitle(curCompt.title)
 }
 </script>
 

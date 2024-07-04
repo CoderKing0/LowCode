@@ -1,33 +1,38 @@
+const ruleBase = [{ text: '必填', value: 'required' }]
+
 const renderingFieldsDataMap = {
   editInput: {
     el: 'el-input',
     value: '',
     title: '单行输入',
     titleDesc: '',
-    placeholder: '请输入',
-    verify: {
-      required: false
-    }
+    placeholder: '',
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   editTextArea: {
     el: 'el-input',
     value: '',
     title: '多行输入',
     titleDesc: '',
-    placeholder: '请输入',
-    verify: {
-      required: false
-    }
+    placeholder: '',
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   editInputNumber: {
     el: 'el-input-number',
     value: '',
     title: '数字输入',
     titleDesc: '',
-    placeholder: '请输入',
-    verify: {
-      required: false
-    }
+    placeholder: '',
+    verifyArr: [],
+    verifyOptions: [
+      ...ruleBase,
+      {
+        text: '限定数值范围',
+        value: { option: 'numberRange', range: { max: null, min: null } }
+      }
+    ]
   },
   slider: {
     el: 'el-slider',
@@ -38,9 +43,8 @@ const renderingFieldsDataMap = {
       max: { text: '满意', value: 100 },
       min: { text: '不满意', value: 0 }
     },
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   rate: {
     el: 'el-rate',
@@ -53,17 +57,15 @@ const renderingFieldsDataMap = {
       count: 5,
       eachScore: 1
     },
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   illustrationText: {
     el: 'span',
     value: '',
     title: '说明文字',
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   radioButton: {
     el: 'el-radio',
@@ -75,9 +77,8 @@ const renderingFieldsDataMap = {
       { text: '选项二', type: 2 },
       { text: '选项三', type: 3 }
     ],
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   checkList: {
     el: 'el-checkbox',
@@ -89,9 +90,8 @@ const renderingFieldsDataMap = {
       { text: '选项二', type: 2 },
       { text: '选项三', type: 3 }
     ],
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   selectBox: {
     el: 'el-select',
@@ -104,9 +104,8 @@ const renderingFieldsDataMap = {
       { text: '选项二', type: 2 },
       { text: '选项三', type: 3 }
     ],
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   selectMultiBox: {
     el: 'el-select',
@@ -119,9 +118,8 @@ const renderingFieldsDataMap = {
       { text: '选项二', type: 2 },
       { text: '选项三', type: 3 }
     ],
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   date: {
     el: 'el-date-picker',
@@ -131,9 +129,8 @@ const renderingFieldsDataMap = {
     type: 'date',
     format: 'yyyy-MM-dd',
     placeholder: '请选择日期',
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   image: {
     el: 'el-upload',
@@ -141,12 +138,11 @@ const renderingFieldsDataMap = {
     title: '图片',
     placeholder: '请上传图片',
     titleDesc: '',
-    verify: {
-      required: false
-    }
+    verifyArr: [],
+    verifyOptions: [...ruleBase]
   },
   subForm: {},
   richtext: {}
 }
 
-export default renderingFieldsDataMap
+export { renderingFieldsDataMap }

@@ -1,5 +1,5 @@
 <template>
-  <div class="input-compt">
+  <div class="input-compt-base">
     <TitleArea :title="itemData.title" level="sixthLevel" />
     <div class="title-desc">{{ itemData.titleDesc }}</div>
     <div class="box" :style="{ height: boxHeight + 'px' }">{{ itemData.placeholder }}</div>
@@ -15,17 +15,17 @@ defineProps({
   },
   boxHeight: {
     type: Number,
-    default: 28
+    default: 30
   }
 })
 </script>
 
 <style lang="less" scoped>
-.input-compt {
+.input-compt-base {
   .title-desc {
     margin-bottom: 4px;
     font-size: 12px;
-    color: var(--third-color);
+    color: #888;
   }
 
   .box {

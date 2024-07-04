@@ -4,7 +4,9 @@
       <TitleArea :title="title" level="secondLevel" />
       <span class="iconfont icon-setting"></span>
     </div>
-    <component :is="curCompt" :itemData="clickingCompt" />
+    <div class="panel-content">
+      <component :is="curCompt" />
+    </div>
   </div>
 </template>
 
@@ -16,8 +18,9 @@ import { componentPanelMap } from '@/components/field-compt/fieldComptMap'
 
 const creationStore = useCreationStore()
 
-const { clickingCompt } = toRefs(creationStore)
-const title = computed(() => clickingCompt?.value?.title || '字段属性')
+const { clickingCompt, clickingComptTitle } = toRefs(creationStore)
+
+const title = computed(() => clickingComptTitle.value || '字段属性')
 // 通过当前点击的组件，获取对应的配置组件
 const curCompt = computed(() => componentPanelMap.get(clickingCompt?.value?.compt))
 </script>
@@ -39,6 +42,10 @@ const curCompt = computed(() => componentPanelMap.get(clickingCompt?.value?.comp
       margin-left: 8px;
       margin-top: 3px;
     }
+  }
+
+  .panel-content {
+    padding: 20px;
   }
 }
 </style>

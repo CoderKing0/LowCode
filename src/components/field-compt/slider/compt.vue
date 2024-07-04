@@ -1,18 +1,19 @@
 <template>
   <div class="compt">
     <TitleArea :title="itemData.title" level="sixthLevel" />
+    <div class="title-desc">{{ itemData.titleDesc }}</div>
     <div class="content">
       <div class="left">
-        <div class="value">{{ itemData.range.max.value / 2 }}</div>
+        <div class="value">{{ showValue }}</div>
       </div>
       <div class="right">
         <div class="slide">
           <div class="cover"></div>
-          <div class="square">{{ itemData.range.max.value / 2 }}</div>
+          <div class="square">{{ showValue }}</div>
         </div>
         <div class="text">
-          <div class="max">{{ itemData.range.min.text }}</div>
-          <div class="min">{{ itemData.range.max.text }}</div>
+          <div class="max" v-if="mixText">{{ mixText }}</div>
+          <div class="min" v-if="maxText">{{ maxText }}</div>
         </div>
       </div>
     </div>
@@ -21,72 +22,84 @@
 
 <script setup>
 import TitleArea from '@/components/title-area/index.vue'
+import { computed } from 'vue'
 
-defineProps({
+const { itemData } = defineProps({
   itemData: {
     type: Object,
     default: () => ({})
   }
 })
+
+const showValue = computed(() => (itemData.range.max.value - itemData.range.min.value) / 2)
+const mixText = computed(() => itemData.range.min.text)
+const maxText = computed(() => itemData.range.max.text)
 </script>
 
 <style lang="less" scoped>
-.content {
-  display: flex;
-
-  .left {
-    width: 60px;
-    height: 30px;
-    margin-right: 10px;
-    line-height: 30px;
-    border: 1px solid var(--third-color);
-    border-radius: 5px;
-    background-color: #fff;
+.compt {
+  .title-desc {
+    margin-bottom: 8px;
     font-size: 12px;
-    text-align: center;
+    color: #888;
   }
-
-  .right {
-    flex: 1;
+  .content {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .slide {
-      position: relative;
-      height: 10px;
-      background-color: var(--third-color);
-      border-radius: 5px;
-    }
 
-    .slide .cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background-color: var(--primary-color);
+    .left {
+      width: 60px;
+      height: 30px;
+      margin-right: 10px;
+      line-height: 30px;
+      border: 1px solid var(--third-color);
       border-radius: 5px;
-    }
-
-    .slide .square {
-      position: absolute;
-      top: -2px;
-      left: 0;
-      width: 30px;
-      height: 14px;
-      margin-left: 50%;
-      transform: translateX(-50%);
       background-color: #fff;
       font-size: 12px;
       text-align: center;
-      box-shadow: #aaa 0px 1px 4px;
     }
 
-    .text {
+    .right {
+      flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      font-size: 14px;
-      color: var(--third-color);
+      .slide {
+        position: relative;
+        height: 10px;
+        background-color: var(--third-color);
+        border-radius: 5px;
+      }
+
+      .slide .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background-color: var(--primary-color);
+        border-radius: 5px;
+      }
+
+      .slide .square {
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 30px;
+        height: 14px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        font-size: 12px;
+        text-align: center;
+        box-shadow: #aaa 0px 1px 4px;
+      }
+
+      .text {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: var(--third-color);
+      }
     }
   }
 }

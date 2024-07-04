@@ -1,9 +1,18 @@
 <template>
   <div class="panel">
-    <h1>panel</h1>
+    <PanelBase :itemData="itemData" />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import PanelBase from '../panel-base/index.vue'
+
+defineProps({
+  itemData: {
+    type: Object,
+    default: () => ({})
+  }
+})
+</script>
 
 <style lang="less" scoped></style>

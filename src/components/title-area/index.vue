@@ -32,7 +32,7 @@ const levelStyle = {
     fontWeight: 'bold'
   },
   sixthLevel: {
-    fontSize1: '14px',
+    fontSize: '14px',
     fontWeight: 'bold'
   }
 }

@@ -21,7 +21,7 @@
 <script setup>
 import _ from 'lodash'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
-import renderingFieldsDataMap from '@/components/field-compt/fieldComptData'
+import { renderingFieldsDataMap } from '@/components/field-compt/fieldComptData'
 import TitleArea from '@/components/title-area/index.vue'
 import FieldItem from '../field-item/index.vue'
 import useCreationStore from '@/stores/creation'
