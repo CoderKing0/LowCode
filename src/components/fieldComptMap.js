@@ -6,12 +6,14 @@ import EditInputNumber from '@/components/rendering-cpn/edit-input-number/index.
 import EditInputNumberPanel from '@/components/configuration-cpn/edit-input-number/index.vue'
 import Slider from '@/components/rendering-cpn/slider/index.vue'
 import SliderPanel from '@/components/configuration-cpn/slider/index.vue'
+import Rate from '@/components/rendering-cpn/rate/index.vue'
 
 const componentMap = new Map()
 componentMap.set('editInput', EditInput)
 componentMap.set('editTextArea', EditTextArea)
 componentMap.set('editInputNumber', EditInputNumber)
 componentMap.set('slider', Slider)
+componentMap.set('rate', Rate)
 
 const componentPanelMap = new Map()
 componentPanelMap.set('editInput', EditInputPanel)

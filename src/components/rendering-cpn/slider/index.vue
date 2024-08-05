@@ -1,7 +1,7 @@
 <template>
   <div class="compt">
     <TitleArea :title="itemData.title" level="sixthLevel" />
-    <div class="title-desc">{{ itemData.titleDesc }}</div>
+    <TitleDesc :titleDesc="itemData.titleDesc" />
     <div class="content">
       <div class="left">
         <div class="value">{{ showValue }}</div>
@@ -21,8 +21,9 @@
 </template>
 
 <script setup>
-import TitleArea from '@/components/common/title-area/index.vue'
 import { computed } from 'vue'
+import TitleArea from '@/components/common/title-area/index.vue'
+import TitleDesc from '@/components/rendering-cpn/title-desc/index.vue'
 
 const { itemData } = defineProps({
   itemData: {
@@ -38,11 +39,6 @@ const maxText = computed(() => itemData.range.max.text)
 
 <style lang="less" scoped>
 .compt {
-  .title-desc {
-    margin-bottom: 8px;
-    font-size: 12px;
-    color: #888;
-  }
   .content {
     display: flex;
 

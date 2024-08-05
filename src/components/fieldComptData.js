@@ -51,7 +51,7 @@ const renderingFieldsDataMap = {
     value: 0,
     title: '评分',
     titleDesc: '',
-    style: 1,
+    style: 'star',
     starLevel: {
       isHalf: false,
       count: 5,

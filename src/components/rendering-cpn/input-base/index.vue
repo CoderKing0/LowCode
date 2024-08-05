@@ -1,13 +1,14 @@
 <template>
   <div class="input-compt-base">
     <TitleArea :title="itemData.title" level="sixthLevel" />
-    <div class="title-desc">{{ itemData.titleDesc }}</div>
+    <TitleDesc :titleDesc="itemData.titleDesc" />
     <div class="box" :style="{ height: boxHeight + 'px' }">{{ itemData.placeholder }}</div>
   </div>
 </template>
 
 <script setup>
 import TitleArea from '@/components/common/title-area/index.vue'
+import TitleDesc from '@/components/rendering-cpn/title-desc/index.vue'
 defineProps({
   itemData: {
     type: Object,
@@ -22,12 +23,6 @@ defineProps({
 
 <style lang="less" scoped>
 .input-compt-base {
-  .title-desc {
-    margin-bottom: 4px;
-    font-size: 12px;
-    color: #888;
-  }
-
   .box {
     display: flex;
     align-items: center;
