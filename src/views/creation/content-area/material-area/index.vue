@@ -19,9 +19,9 @@
 <script setup>
 import { ref } from 'vue'
 import { materialFieldsData } from '../data'
-import TabBar from '@/components/tab-bar/index.vue'
-import FieldWrapper from '@/components/field/field-wrapper/index.vue'
-import StyleWrapper from '@/components/style/style-wrapper/index.vue'
+import TabBar from '@/components/common/tab-bar/index.vue'
+import FieldWrapper from '@/components/material-cpn/field-wrapper/index.vue'
+import StyleWrapper from '@/components/material-cpn/style-wrapper/index.vue'
 
 const curIndex = ref(0)
 const handleTabClick = (index) => {

@@ -7,7 +7,7 @@
 
 <script setup>
 import useComputed from '@/hooks/useComputed'
-import TitleArea from '@/components/title-area/index.vue'
+import TitleArea from '@/components/common/title-area/index.vue'
 const props = defineProps({
   title: {
     type: String,

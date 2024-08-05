@@ -13,8 +13,8 @@
 <script setup>
 import { computed, toRefs } from 'vue'
 import useCreationStore from '@/stores/creation'
-import TitleArea from '@/components/title-area/index.vue'
-import { componentPanelMap } from '@/components/field-compt/fieldComptMap'
+import TitleArea from '@/components/common/title-area/index.vue'
+import { componentPanelMap } from '@/components/fieldComptMap'
 
 const creationStore = useCreationStore()
 

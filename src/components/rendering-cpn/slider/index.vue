@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import TitleArea from '@/components/title-area/index.vue'
+import TitleArea from '@/components/common/title-area/index.vue'
 import { computed } from 'vue'
 
 const { itemData } = defineProps({

@@ -26,8 +26,8 @@
 import { storeToRefs } from 'pinia'
 import useCreationStore from '@/stores/creation'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
-import { componentMap } from '@/components/field-compt/fieldComptMap'
-import FieldComptWrapper from '@/components/field-compt/field-compt-wrapper/index.vue'
+import { componentMap } from '@/components/fieldComptMap'
+import FieldComptWrapper from '@/components/rendering-cpn/field-compt-wrapper/index.vue'
 
 const creationStore = useCreationStore()
 

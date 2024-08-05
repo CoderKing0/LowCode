@@ -37,9 +37,9 @@
 
 <script setup>
 import useComputed from '@/hooks/useComputed'
-import inputPanelBase from '../input-panel-base/index.vue'
-import TitleArea from '@/components/title-area/index.vue'
-import EditRange from '@/components/edit-range/index.vue'
+import inputPanelBase from '@/components/configuration-cpn/input-panel-base/index.vue'
+import TitleArea from '@/components/common/title-area/index.vue'
+import EditRange from '@/components/configuration-cpn/edit-range/index.vue'
 
 defineProps({
   isShowTipInput: {

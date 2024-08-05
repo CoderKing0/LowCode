@@ -1,11 +1,11 @@
 <template>
-  <div class="panel">
-    <PanelBase :itemData="itemData" />
+  <div class="compt">
+    <InputBase :itemData="itemData" />
   </div>
 </template>
 
 <script setup>
-import PanelBase from '../panel-base/index.vue'
+import InputBase from '@/components/rendering-cpn/input-base/index.vue'
 
 defineProps({
   itemData: {

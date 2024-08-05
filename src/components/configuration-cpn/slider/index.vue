@@ -3,7 +3,7 @@
     <PanelBase :isShowTipInput="false">
       <div class="score-range">
         <TitleArea :title="'分值'" level="sixthLevel" />
-        <EditRange v-model:maxValue="maxScore" v-model:minValue="minScore" />
+        <EditRange v-model:maxValue="maxScore.value" v-model:minValue="minScore.value" />
       </div>
       <div class="score-text">
         <TitleArea :title="'显示文本'" level="sixthLevel" />
@@ -26,13 +26,13 @@
 <script setup>
 import { ref, watch } from 'vue'
 import useComputed from '@/hooks/useComputed'
-import PanelBase from '../panel-base/index.vue'
-import TitleArea from '@/components/title-area/index.vue'
-import EditRange from '@/components/edit-range/index.vue'
+import PanelBase from '@/components/configuration-cpn/panel-base/index.vue'
+import TitleArea from '@/components/common/title-area/index.vue'
+import EditRange from '@/components/configuration-cpn/edit-range/index.vue'
 
 // 使用useComputed包裹的value，才能够使用v-model双向绑定
-const maxScore = useComputed(1, 'range.max.value')
-const minScore = useComputed(1, 'range.min.value')
+const maxScore = useComputed(1, 'range.max')
+const minScore = useComputed(1, 'range.min')
 const maxText = useComputed(1, 'range.max.text')
 const minText = useComputed(1, 'range.min.text')
 
