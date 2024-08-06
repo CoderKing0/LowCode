@@ -1,24 +1,26 @@
 <template>
   <div class="panel">
     <PanelBase :isShowTipInput="false">
-      <div class="score-range">
-        <TitleArea :title="'分值'" level="sixthLevel" />
-        <EditRange v-model:maxValue="maxScore.value" v-model:minValue="minScore.value" />
-      </div>
-      <div class="score-text">
-        <TitleArea :title="'显示文本'" level="sixthLevel" />
-        <el-checkbox v-model="isShowText">显示文本</el-checkbox>
-        <template v-if="isShowText">
-          <div class="show-text">
-            <div class="label">最小值显示文本</div>
-            <el-input v-model="minText" />
-          </div>
-          <div class="show-text">
-            <div class="label">最大值显示文本</div>
-            <el-input v-model="maxText" />
-          </div>
-        </template>
-      </div>
+      <template #default>
+        <div class="score-range">
+          <TitleArea :title="'分值'" level="sixthLevel" />
+          <EditRange v-model:maxValue="maxScore.value" v-model:minValue="minScore.value" />
+        </div>
+        <div class="score-text">
+          <TitleArea :title="'显示文本'" level="sixthLevel" />
+          <el-checkbox v-model="isShowText">显示文本</el-checkbox>
+          <template v-if="isShowText">
+            <div class="show-text">
+              <div class="label">最小值显示文本</div>
+              <el-input v-model="minText" />
+            </div>
+            <div class="show-text">
+              <div class="label">最大值显示文本</div>
+              <el-input v-model="maxText" />
+            </div>
+          </template>
+        </div>
+      </template>
     </PanelBase>
   </div>
 </template>

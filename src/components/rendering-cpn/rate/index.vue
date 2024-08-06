@@ -3,47 +3,26 @@
     <TitleArea :title="itemData.title" level="sixthLevel" />
     <TitleDesc :titleDesc="itemData.titleDesc" />
     <div class="content">
-      <div
-        v-for="item in itemData.starLevel.count"
-        :key="item"
-        class="rate-item"
-        :style="{ backgroundImage: `url(${bgcImg})` }"
-      ></div>
+      <RateIcon
+        :iconCount="itemData.rateLevel.count"
+        :iconKind="itemData.activeKind"
+        :imgKinds="itemData.imgKinds"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
 import TitleArea from '@/components/common/title-area/index.vue'
 import TitleDesc from '@/components/rendering-cpn/title-desc/index.vue'
+import RateIcon from '@/components/common/rate-icon/index.vue'
 
-const props = defineProps({
+defineProps({
   itemData: {
     type: Object,
     default: () => ({})
   }
 })
-
-const bgcImg = ref(null)
-onMounted(async () => {
-  const imgInstance = await import(`@/assets/img/${props.itemData.style}-empty.png`)
-  bgcImg.value = imgInstance.default
-})
 </script>
 
-<style lang="less" scoped>
-.rate {
-  .content {
-    display: flex;
-    align-items: center;
-    margin-left: -5px;
-
-    .rate-item {
-      width: 32px;
-      height: 32px;
-      background: center / contain no-repeat;
-    }
-  }
-}
-</style>
+<style lang="less" scoped></style>

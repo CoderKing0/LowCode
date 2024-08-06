@@ -51,8 +51,10 @@ const renderingFieldsDataMap = {
     value: 0,
     title: '评分',
     titleDesc: '',
-    style: 'star',
-    starLevel: {
+    allKinds: ['star', 'heart', 'fire', 'flower'],
+    activeKind: 'star',
+    imgKinds: ['empty', 'empty', 'empty', 'empty', 'empty'],
+    rateLevel: {
       isHalf: false,
       count: 5,
       eachScore: 1
