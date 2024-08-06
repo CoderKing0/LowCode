@@ -25,6 +25,7 @@ import { renderingFieldsDataMap } from '@/components/fieldComptData'
 import TitleArea from '@/components/common/title-area/index.vue'
 import FieldItem from '@/components/material-cpn/field-item/index.vue'
 import useCreationStore from '@/stores/creation'
+import { OperateType } from '@/constant/creation'
 
 defineProps({
   fieldData: {
@@ -43,7 +44,7 @@ const handleAddComptData = (curCompt, isDrag = true) => {
   if (isDrag) {
     creationStore.setCurDraggingCompt(comptData)
   } else {
-    creationStore.setCurSelectedComptList(comptData)
+    creationStore.setCurSelectedComptList(OperateType.PUSH, -1, comptData)
   }
 }
 

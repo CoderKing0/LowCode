@@ -5,8 +5,12 @@
       <div class="scroll-area">
         <el-scrollbar class="scroll">
           <Draggable class="draggable" group="shared" @add="handleAddCompt">
-            <template v-for="item in curSelectedComptList" :key="item.compt">
-              <FieldComptWrapper>
+            <template v-for="(item, index) in curSelectedComptList" :key="item.compt">
+              <FieldComptWrapper
+                :itemData="item"
+                :curIndex="index"
+                @operated="handleWrapperOperation"
+              >
                 <component
                   :is="componentMap.get(item.compt)"
                   :itemData="item"
@@ -23,11 +27,13 @@
 </template>
 
 <script setup>
+import _ from 'lodash'
 import { storeToRefs } from 'pinia'
 import useCreationStore from '@/stores/creation'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
 import { componentMap } from '@/components/fieldComptMap'
 import FieldComptWrapper from '@/components/rendering-cpn/field-compt-wrapper/index.vue'
+import { OperateType } from '@/constant/creation'
 
 const creationStore = useCreationStore()
 
@@ -35,7 +41,7 @@ const { curSelectedComptList, formTitle } = storeToRefs(creationStore)
 
 // 拿到拖拽过来的组件
 const handleAddCompt = (curCompt) => {
-  creationStore.setCurSelectedComptList(undefined, curCompt.newIndex)
+  creationStore.setCurSelectedComptList(OperateType.INSERT, curCompt.newIndex)
   creationStore.setCurDraggingCompt(null)
 }
 
@@ -43,6 +49,15 @@ const handleAddCompt = (curCompt) => {
 const handleComptClick = (curCompt) => {
   creationStore.setCurClickingCompt(curCompt)
   creationStore.setCurClickingComptTitle(curCompt.title)
+}
+
+// 删除或者复制某个组件
+const handleWrapperOperation = (type, curIndex, curCompt) => {
+  if (type === OperateType.DELETE) {
+    creationStore.setCurSelectedComptList(OperateType.DELETE, curIndex)
+  } else {
+    creationStore.setCurSelectedComptList(OperateType.COPY, curIndex, _.cloneDeep(curCompt))
+  }
 }
 </script>
 

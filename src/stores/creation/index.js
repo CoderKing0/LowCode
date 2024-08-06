@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { setObjValue, getObjValue } from '@/utils/setOrGetObjValue'
+import { OperateType } from '@/constant/creation'
 
 const useCreationStore = defineStore('creation', {
   state: () => ({
@@ -23,13 +24,20 @@ const useCreationStore = defineStore('creation', {
       this.clickingComptTitle = title
     },
     // 更新当前选中的组件列表
-    setCurSelectedComptList(compt, index) {
-      if (compt) {
-        this.curSelectedComptList.push(compt)
-        return
+    setCurSelectedComptList(type, index, compt) {
+      switch (type) {
+        case OperateType.PUSH:
+          this.curSelectedComptList.push(compt)
+          break
+        case OperateType.DELETE:
+          this.curSelectedComptList.splice(index, 1)
+          break
+        case OperateType.INSERT:
+          this.curSelectedComptList.splice(index, 0, this.draggingCompt)
+          break
+        case OperateType.COPY:
+          this.curSelectedComptList.splice(index, 0, compt)
       }
-
-      this.curSelectedComptList.splice(index, 0, this.draggingCompt)
     },
     // 通过右侧面板更新选中的组件数据
     setCurClickingComptData(path, value) {

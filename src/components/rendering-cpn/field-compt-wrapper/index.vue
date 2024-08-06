@@ -1,8 +1,8 @@
 <template>
   <div class="field-compt-wrapper">
     <div class="icon">
-      <span class="iconfont icon-copy"></span>
-      <span class="iconfont icon-delete"></span>
+      <span class="iconfont icon-copy" @click="handleOperation(OperateType.COPY)"></span>
+      <span class="iconfont icon-delete" @click="handleOperation(OperateType.DELETE)"></span>
     </div>
     <div class="content">
       <slot></slot>
@@ -10,7 +10,25 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { OperateType } from '@/constant/creation'
+
+const props = defineProps({
+  itemData: {
+    type: Object,
+    default: () => ({})
+  },
+  curIndex: {
+    type: Number,
+    default: 0
+  }
+})
+
+const emit = defineEmits(['operated'])
+const handleOperation = (type) => {
+  emit('operated', type, props.curIndex, props.itemData)
+}
+</script>
 
 <style lang="less" scoped>
 .field-compt-wrapper {
