@@ -1,8 +1,14 @@
 <template>
-  <div class="rendering-area content-area-height">
+  <div class="rendering-area content-area-height" :style="{ background: bgcColor || bgcImg }">
     <div class="draggable-container">
+      <!-- 顶部样式 -->
+      <div class="top-box" :style="topStyle"></div>
+
+      <!-- 表单标题 -->
       <TitleArea :title="formTitle" level="firstLevel" />
-      <div class="scroll-area">
+
+      <!-- 组件渲染区 -->
+      <div class="scroll-area" :style="{ height: scrollAreaHeight }">
         <el-scrollbar class="scroll">
           <Draggable class="draggable" group="shared" @add="handleAddCompt">
             <template v-for="(item, index) in curSelectedComptList" :key="item.compt">
@@ -23,11 +29,18 @@
         <div class="empty-tip">请从左侧拖拽来添加字段</div>
       </div>
     </div>
+
+    <!-- 底部按钮 -->
+    <div class="rendering-bottom">
+      <div class="sub-record" :style="{ color: bottomColor }">提交记录</div>
+      <div class="sub-btn" :style="{ background: bottomColor }">提交</div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import _ from 'lodash'
+import { computed, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import useCreationStore from '@/stores/creation'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
@@ -37,7 +50,57 @@ import { OperateType } from '@/constant/creation'
 
 const creationStore = useCreationStore()
 
-const { curSelectedComptList, formTitle } = storeToRefs(creationStore)
+const { curSelectedComptList, formTitle, actingStyleTemplate } = storeToRefs(creationStore)
+
+// 背景颜色/图片
+const bgcColor = ref('')
+const bgcImg = ref('')
+
+// 顶部样式
+const topStyle = ref('')
+const curTemplateId = computed(() => actingStyleTemplate.value.templateId)
+
+const scrollAreaHeight = computed(
+  () => `calc(100% - ${curTemplateId.value === 1 ? '123px' : '243px'})`
+)
+
+const loadStyle = async () => {
+  const suffix = [8, 9].includes(curTemplateId.value) ? 'png' : 'jpg'
+
+  // 获取顶部样式
+  if (curTemplateId.value === 1) {
+    topStyle.value = {
+      height: '30px',
+      backgroundColor: '#006ce2'
+    }
+  } else {
+    const topImgInstance = await import(
+      `@/assets/img/themes/themeTop${curTemplateId.value}.${suffix}`
+    )
+    topStyle.value = {
+      height: '150px',
+      background: `url(${topImgInstance.default}) center center / cover no-repeat`
+    }
+  }
+
+  // 获取背景颜色/图片
+  bgcColor.value = actingStyleTemplate.value.style.backgroundColor
+  if (!bgcColor.value) {
+    const imgInstance = await import(`@/assets/img/themes/themeBgc${curTemplateId.value}.${suffix}`)
+    bgcImg.value = `url(${imgInstance.default})`
+  }
+}
+
+watch(
+  actingStyleTemplate,
+  () => {
+    loadStyle()
+  },
+  { immediate: true }
+)
+
+// 底部样式
+const bottomColor = computed(() => actingStyleTemplate.value.style.bottomContentColor)
 
 // 拿到拖拽过来的组件
 const handleAddCompt = (curCompt) => {
@@ -67,25 +130,16 @@ const handleWrapperOperation = (type, curIndex, curCompt) => {
   flex: 1;
   display: flex;
   justify-content: center;
-  background-color: rgb(247, 251, 255);
   border-left: 1px solid #dedfe0;
   border-right: 1px solid #dedfe0;
+  background: no-repeat center/contain;
 
   .draggable-container {
     width: 75%;
     margin: 30px auto 0;
     background-color: #fff;
 
-    &::before {
-      content: '';
-      display: block;
-      height: 30px;
-      background-color: var(--primary-color);
-    }
-
     .scroll-area {
-      height: calc(100% - 123px);
-
       .scroll {
         padding: 0 20px;
         box-sizing: border-box;
@@ -113,6 +167,36 @@ const handleWrapperOperation = (type, curIndex, curCompt) => {
       margin: auto;
       font-size: 18px;
       color: #c0c0c3;
+    }
+  }
+
+  .rendering-bottom {
+    position: absolute;
+    z-index: 99;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 0 200px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+    .sub-record {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sub-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 30px;
+      color: #fff;
+      border-radius: 20px;
     }
   }
 }

@@ -16,11 +16,14 @@
 import { ref } from 'vue'
 import StyleItem from '@/components/material-cpn/style-item/index.vue'
 import templateData from '@/components/material-cpn/style-wrapper/style-data'
+import useCreationStore from '@/stores/creation'
 
+const creationStore = useCreationStore()
 const activeId = ref(templateData[0].templateId)
 
 const handleItemClick = (id) => {
   activeId.value = id
+  creationStore.setActingStyleTemplate(id)
 }
 </script>
 

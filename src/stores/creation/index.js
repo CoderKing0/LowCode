@@ -1,14 +1,16 @@
 import { defineStore } from 'pinia'
 import { setObjValue, getObjValue } from '@/utils/setOrGetObjValue'
 import { OperateType } from '@/constant/creation'
+import templateData from '@/components/material-cpn/style-wrapper/style-data'
 
 const useCreationStore = defineStore('creation', {
   state: () => ({
     formTitle: '自定义标题', // 项目标题
     curSelectedComptList: [], // 当前选中的组件列表
     draggingCompt: null, // 当前拖拽的组件
-    clickingComptTitle: '',
-    clickingCompt: null // 当前点击的组件
+    clickingComptTitle: '', // 当前点击的组件标题
+    clickingCompt: null, // 当前点击的组件
+    actingStyleTemplate: templateData[0] // 当前激活的样式模板
   }),
   actions: {
     // 更新当前正在拖拽的组件
@@ -52,6 +54,10 @@ const useCreationStore = defineStore('creation', {
 
       // 获取较深路径的值
       return getObjValue(this.clickingCompt, path)
+    },
+    // 更新当前激活的样式模板
+    setActingStyleTemplate(templateId) {
+      this.actingStyleTemplate = templateData.find((item) => item.templateId === templateId)
     }
   }
 })
