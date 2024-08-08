@@ -46,7 +46,7 @@ const bgcImg = ref([])
 watchEffect(async () => {
   const imgs = []
   for (let imgKind of props.imgKinds) {
-    const imgInstance = await import(`@/assets/img/${props.iconKind}-${imgKind}.png`)
+    const imgInstance = await import(`@/assets/img/rate/${props.iconKind}-${imgKind}.png`)
     imgs.push(imgInstance.default)
   }
   bgcImg.value = imgs

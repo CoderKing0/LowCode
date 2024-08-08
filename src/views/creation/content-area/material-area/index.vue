@@ -32,10 +32,16 @@ const handleTabClick = (index) => {
 <style lang="less" scoped>
 .material-area {
   width: 260px;
+  height: calc(100vh - 61px);
   background-color: #f9f9fa;
 
   .field-list {
+    height: calc(100% - 88px);
     padding: 20px;
+  }
+
+  .style-list {
+    height: calc(100% - 44px);
   }
 }
 </style>

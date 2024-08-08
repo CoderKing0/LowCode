@@ -156,19 +156,19 @@ const handleIconClick = (index) => {
       }
 
       .star {
-        background: url(@/assets/img/star-whole.png) no-repeat center/contain;
+        background: url(@/assets/img/rate/star-whole.png) no-repeat center/contain;
       }
       .heart {
         transform: translateX(-2px);
-        background: url(@/assets/img/heart-whole.png) no-repeat center/contain;
+        background: url(@/assets/img/rate/heart-whole.png) no-repeat center/contain;
       }
       .fire {
         transform: translateX(-4px);
-        background: url(@/assets/img/fire-whole.png) no-repeat center/contain;
+        background: url(@/assets/img/rate/fire-whole.png) no-repeat center/contain;
       }
       .flower {
         transform: translateX(-6px);
-        background: url(@/assets/img/flower-whole.png) no-repeat center/contain;
+        background: url(@/assets/img/rate/flower-whole.png) no-repeat center/contain;
       }
     }
   }
