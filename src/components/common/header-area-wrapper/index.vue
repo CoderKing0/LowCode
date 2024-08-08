@@ -1,5 +1,5 @@
 <template>
-  <div class="header-area-common">
+  <div class="header-area-wrapper">
     <div class="left">
       <slot name="left"></slot>
     </div>
@@ -15,7 +15,7 @@
 <script setup></script>
 
 <style lang="less" scoped>
-.header-area-common {
+.header-area-wrapper {
   display: flex;
   justify-content: space-between;
   align-content: center;

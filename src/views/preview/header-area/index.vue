@@ -1,17 +1,17 @@
 <template>
-  <HeaderAreaCommon>
+  <HeaderAreaWrapper>
     <template #left>
       <div class="back" @click="handleBack">返回</div>
     </template>
     <template #center>
       <CoderKing :isShowLogo="false" />
     </template>
-  </HeaderAreaCommon>
+  </HeaderAreaWrapper>
 </template>
 
 <script setup>
 import CoderKing from '@/components/common/coder-king/index.vue'
-import HeaderAreaCommon from '@/components/common/header-area-common/index.vue'
+import HeaderAreaWrapper from '@/components/common/header-area-wrapper/index.vue'
 
 const emit = defineEmits(['back'])
 
@@ -21,7 +21,7 @@ const handleBack = () => {
 </script>
 
 <style lang="less" scoped>
-.header-area-common {
+.header-area-wrapper {
   .back {
     display: flex;
     justify-content: center;

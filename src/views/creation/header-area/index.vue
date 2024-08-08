@@ -1,5 +1,5 @@
 <template>
-  <HeaderAreaCommon>
+  <HeaderAreaWrapper>
     <template #left>
       <CoderKing />
     </template>
@@ -35,14 +35,14 @@
         发布
       </div>
     </template>
-  </HeaderAreaCommon>
+  </HeaderAreaWrapper>
 </template>
 
 <script setup>
 import { nextTick, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import useCreationStore from '@/stores/creation'
-import HeaderAreaCommon from '@/components/common/header-area-common/index.vue'
+import HeaderAreaWrapper from '@/components/common/header-area-wrapper/index.vue'
 import CoderKing from '@/components/common/coder-king/index.vue'
 
 const router = useRouter()
@@ -68,7 +68,7 @@ const handlePublish = () => {
 </script>
 
 <style lang="less" scoped>
-.header-area-common {
+.header-area-wrapper {
   border-bottom: 1px solid #dedfe0;
 
   .center-area {

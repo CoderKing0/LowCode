@@ -1,16 +1,14 @@
 <template>
   <div class="preview">
     <HeaderArea @back="handleBack" />
-    <ContentArea />
-    <BottomArea />
+    <RenderingArea />
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router'
 import HeaderArea from '@/views/preview/header-area/index.vue'
-import ContentArea from '@/views/preview/content-area/index.vue'
-import BottomArea from '@/components/common/bottom-area/index.vue'
+import RenderingArea from '@/views/preview/rendering-area/index.vue'
 
 const router = useRouter()
 const handleBack = () => {
@@ -22,7 +20,6 @@ const handleBack = () => {
 .preview {
   width: 100vw;
   height: 100vh;
-  padding-top: 14px;
   box-sizing: border-box;
   background-color: #f7fbff;
 }
