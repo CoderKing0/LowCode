@@ -1,46 +1,49 @@
 <template>
-  <div class="header-area">
-    <div class="left">
-      <img src="@/assets/img/avatar.jpg" alt="" />
-      <div class="name">CoderKingLowCode</div>
-    </div>
-    <div class="center">
-      <div
-        v-if="!isSettingFormTitle"
-        :class="['formTitle', { custom: formTitle === '自定义标题' }]"
-      >
-        {{ formTitle }}
+  <HeaderAreaCommon>
+    <template #left>
+      <CoderKing />
+    </template>
+    <template #center>
+      <div class="center-area">
+        <div
+          v-if="!isSettingFormTitle"
+          :class="['formTitle', { custom: formTitle === '自定义标题' }]"
+        >
+          {{ formTitle }}
+        </div>
+        <input
+          v-else
+          type="text"
+          v-model="formTitle"
+          @blur="isSettingFormTitle = false"
+          ref="inputRef"
+        />
+        <span
+          v-show="!isSettingFormTitle"
+          class="iconfont icon-edit"
+          @click="handleSetFormTitle"
+        ></span>
       </div>
-      <input
-        v-else
-        type="text"
-        v-model="formTitle"
-        @blur="isSettingFormTitle = false"
-        ref="inputRef"
-      />
-      <span
-        v-show="!isSettingFormTitle"
-        class="iconfont icon-edit"
-        @click="handleSetFormTitle"
-      ></span>
-    </div>
-    <div class="right">
-      <div class="preview" @click="handlePreview">
+    </template>
+    <template #right>
+      <div class="preview right-item" @click="handlePreview">
         <span class="iconfont icon-preview"></span>
         预览
       </div>
-      <div class="publish" @click="handlePublish">
+      <div class="publish right-item" @click="handlePublish">
         <span class="iconfont icon-publish"></span>
         发布
       </div>
-    </div>
-  </div>
+    </template>
+  </HeaderAreaCommon>
 </template>
 
 <script setup>
-import useCreationStore from '@/stores/creation'
 import { nextTick, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
+import useCreationStore from '@/stores/creation'
+import HeaderAreaCommon from '@/components/common/header-area-common/index.vue'
+import CoderKing from '@/components/common/coder-king/index.vue'
 
 const router = useRouter()
 const creationStore = useCreationStore()
@@ -65,39 +68,10 @@ const handlePublish = () => {
 </script>
 
 <style lang="less" scoped>
-.header-area {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  height: 60px;
-  padding: 0 20px;
+.header-area-common {
   border-bottom: 1px solid #dedfe0;
 
-  .left,
-  .right {
-    display: flex;
-    align-items: center;
-    width: 200px;
-  }
-
-  .left {
-    font-weight: 700;
-    img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    .name {
-      background: linear-gradient(to right, red, blue);
-      background-clip: text;
-      color: transparent;
-    }
-  }
-
-  .center {
-    flex: 1;
+  .center-area {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,17 +95,17 @@ const handlePublish = () => {
     }
   }
 
-  .right {
+  .right-item {
     justify-content: end;
     color: #006ce2;
-    .preview {
-      margin-right: 10px;
-    }
+  }
+  .preview {
+    margin-right: 10px;
+  }
 
-    .preview,
-    .publish {
-      cursor: pointer;
-    }
+  .preview,
+  .publish {
+    cursor: pointer;
   }
 }
 </style>
