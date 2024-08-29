@@ -63,7 +63,7 @@ const allKinds = useComputed(1, 'allKinds')
 const activeKind = useComputed(1, 'activeKind')
 const imgKinds = useComputed(1, 'imgKinds')
 const rateLevel = useComputed(1, 'rateLevel')
-const rateValue = useComputed(1, 'value')
+const rateValue = useComputed(1, 'defaultValue')
 
 const handleActiveKind = (kind) => {
   activeKind.value = kind

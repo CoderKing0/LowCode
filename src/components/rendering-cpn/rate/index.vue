@@ -14,7 +14,7 @@
 
 <script setup>
 import TitleArea from '@/components/common/title-area/index.vue'
-import TitleDesc from '@/components/rendering-cpn/title-desc/index.vue'
+import TitleDesc from '@/components/common/title-desc/index.vue'
 import RateIcon from '@/components/common/rate-icon/index.vue'
 
 defineProps({

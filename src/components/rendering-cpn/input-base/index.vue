@@ -8,7 +8,7 @@
 
 <script setup>
 import TitleArea from '@/components/common/title-area/index.vue'
-import TitleDesc from '@/components/rendering-cpn/title-desc/index.vue'
+import TitleDesc from '@/components/common/title-desc/index.vue'
 defineProps({
   itemData: {
     type: Object,

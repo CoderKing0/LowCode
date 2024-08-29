@@ -1,10 +1,16 @@
 const ruleBase = [{ text: '必填', value: 'required' }]
 
+// 校验规则
+const verifyRuleMap = {
+  required: { required: true, message: '请输入内容', trigger: 'blur' }
+}
+
+// 每个组件的初始化数据
 const renderingFieldsDataMap = {
   editInput: {
     prop: 'editInput',
     el: 'el-input',
-    value: '',
+    defaultValue: '',
     title: '单行输入',
     titleDesc: '',
     placeholder: '',
@@ -14,7 +20,7 @@ const renderingFieldsDataMap = {
   editTextArea: {
     prop: 'editTextArea',
     el: 'el-input',
-    value: '',
+    defaultValue: '',
     title: '多行输入',
     titleDesc: '',
     placeholder: '',
@@ -24,7 +30,7 @@ const renderingFieldsDataMap = {
   editInputNumber: {
     prop: 'editInputNumber',
     el: 'el-input-number',
-    value: '',
+    defaultValue: '',
     title: '数字输入',
     titleDesc: '',
     placeholder: '',
@@ -40,7 +46,7 @@ const renderingFieldsDataMap = {
   slider: {
     prop: 'slider',
     el: 'el-slider',
-    value: 0,
+    defaultValue: 0,
     title: '滑动条',
     titleDesc: '',
     range: {
@@ -53,7 +59,7 @@ const renderingFieldsDataMap = {
   rate: {
     prop: 'rate',
     el: 'el-rate',
-    value: 0,
+    defaultValue: 0,
     title: '评分',
     titleDesc: '',
     allKinds: ['star', 'heart', 'fire', 'flower'],
@@ -70,7 +76,7 @@ const renderingFieldsDataMap = {
   illustrationText: {
     prop: 'illustrationText',
     el: 'span',
-    value: '',
+    defaultValue: '',
     title: '说明文字',
     verifyArr: [],
     verifyOptions: [...ruleBase]
@@ -78,7 +84,7 @@ const renderingFieldsDataMap = {
   radioButton: {
     prop: 'radioButton',
     el: 'el-radio',
-    value: '',
+    defaultValue: '',
     title: '单选',
     titleDesc: '',
     options: [
@@ -92,7 +98,7 @@ const renderingFieldsDataMap = {
   checkList: {
     prop: 'checkList',
     el: 'el-checkbox',
-    value: [],
+    defaultValue: [],
     title: '多选',
     titleDesc: '',
     options: [
@@ -106,7 +112,7 @@ const renderingFieldsDataMap = {
   selectBox: {
     prop: 'selectBox',
     el: 'el-select',
-    value: '',
+    defaultValue: '',
     title: '下拉框',
     titleDesc: '',
     placeholder: '请选择',
@@ -121,7 +127,7 @@ const renderingFieldsDataMap = {
   selectMultiBox: {
     prop: 'selectMultiBox',
     el: 'el-select',
-    value: [],
+    defaultValue: [],
     title: '下拉复选框',
     titleDesc: '',
     placeholder: '请选择',
@@ -136,7 +142,7 @@ const renderingFieldsDataMap = {
   date: {
     prop: 'date',
     el: 'el-date-picker',
-    value: '',
+    defaultValue: '',
     title: '日期',
     titleDesc: '',
     type: 'date',
@@ -148,7 +154,7 @@ const renderingFieldsDataMap = {
   image: {
     prop: 'image',
     el: 'el-upload',
-    value: '',
+    defaultValue: '',
     title: '图片',
     placeholder: '请上传图片',
     titleDesc: '',
@@ -159,4 +165,4 @@ const renderingFieldsDataMap = {
   richtext: {}
 }
 
-export { renderingFieldsDataMap }
+export { renderingFieldsDataMap, verifyRuleMap }

@@ -23,7 +23,7 @@
 <script setup>
 import { computed } from 'vue'
 import TitleArea from '@/components/common/title-area/index.vue'
-import TitleDesc from '@/components/rendering-cpn/title-desc/index.vue'
+import TitleDesc from '@/components/common/title-desc/index.vue'
 
 const { itemData } = defineProps({
   itemData: {
