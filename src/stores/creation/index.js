@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { defineStore } from 'pinia'
 import { setObjValue, getObjValue } from '@/utils/setOrGetObjValue'
 import { OperateType } from '@/constant/creation'
@@ -58,6 +59,10 @@ const useCreationStore = defineStore('creation', {
     // 更新当前激活的样式模板
     setActingStyleTemplate(templateId) {
       this.actingStyleTemplate = templateData.find((item) => item.templateId === templateId)
+    },
+    // 深拷贝当前选中组件列表作为预览页表单配置
+    getPreviewFormConfig() {
+      return _.cloneDeep(this.curSelectedComptList)
     }
   }
 })

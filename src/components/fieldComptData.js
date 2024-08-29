@@ -2,6 +2,7 @@ const ruleBase = [{ text: '必填', value: 'required' }]
 
 const renderingFieldsDataMap = {
   editInput: {
+    prop: 'editInput',
     el: 'el-input',
     value: '',
     title: '单行输入',
@@ -11,6 +12,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   editTextArea: {
+    prop: 'editTextArea',
     el: 'el-input',
     value: '',
     title: '多行输入',
@@ -20,6 +22,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   editInputNumber: {
+    prop: 'editInputNumber',
     el: 'el-input-number',
     value: '',
     title: '数字输入',
@@ -35,6 +38,7 @@ const renderingFieldsDataMap = {
     ]
   },
   slider: {
+    prop: 'slider',
     el: 'el-slider',
     value: 0,
     title: '滑动条',
@@ -47,6 +51,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   rate: {
+    prop: 'rate',
     el: 'el-rate',
     value: 0,
     title: '评分',
@@ -63,6 +68,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   illustrationText: {
+    prop: 'illustrationText',
     el: 'span',
     value: '',
     title: '说明文字',
@@ -70,6 +76,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   radioButton: {
+    prop: 'radioButton',
     el: 'el-radio',
     value: '',
     title: '单选',
@@ -83,6 +90,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   checkList: {
+    prop: 'checkList',
     el: 'el-checkbox',
     value: [],
     title: '多选',
@@ -96,6 +104,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   selectBox: {
+    prop: 'selectBox',
     el: 'el-select',
     value: '',
     title: '下拉框',
@@ -110,6 +119,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   selectMultiBox: {
+    prop: 'selectMultiBox',
     el: 'el-select',
     value: [],
     title: '下拉复选框',
@@ -124,6 +134,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   date: {
+    prop: 'date',
     el: 'el-date-picker',
     value: '',
     title: '日期',
@@ -135,6 +146,7 @@ const renderingFieldsDataMap = {
     verifyOptions: [...ruleBase]
   },
   image: {
+    prop: 'image',
     el: 'el-upload',
     value: '',
     title: '图片',
