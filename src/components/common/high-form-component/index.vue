@@ -7,7 +7,13 @@
             <TitleArea :title="item.title" level="sixthLevel" />
           </template>
           <TitleDesc :titleDesc="item.titleDesc" />
-          <el-input v-model="formValue[item.prop]" />
+          <component
+            :is="item.elInfo.el"
+            v-model="formValue[item.prop]"
+            v-bind="item.elInfo"
+            :itemData="item"
+            :formValue="formValue"
+          />
         </el-form-item>
       </template>
     </el-form>
@@ -15,10 +21,11 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { onBeforeMount, reactive } from 'vue'
 import TitleArea from '@/components/common/title-area/index.vue'
 import TitleDesc from '@/components/common/title-desc/index.vue'
 import { verifyRuleMap } from '@/components/fieldComptData'
+import componentsMap from '@/components/preview/componentsMap'
 
 const props = defineProps({
   formConfig: {
@@ -44,6 +51,18 @@ const rules = reactive(
     return prev
   }, {})
 )
+
+// 初始化自定义组件
+onBeforeMount(() => {
+  props.formConfig.forEach((item) => {
+    const customCompStr = item.elInfo.el
+    const customComp = componentsMap.get(customCompStr)
+
+    if (customComp) {
+      item.elInfo.el = customComp
+    }
+  })
+})
 </script>
 
 <style lang="less" scoped>

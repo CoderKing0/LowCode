@@ -6,13 +6,13 @@
       <div class="left">
         <div class="value">{{ showValue }}</div>
       </div>
-      <div class="right">
+      <div class="right" :style="{ justifyContent: isShowText ? 'space-between' : 'center' }">
         <div class="slide">
           <div class="cover"></div>
           <div class="square">{{ showValue }}</div>
         </div>
         <div class="text">
-          <div class="max" v-if="mixText">{{ mixText }}</div>
+          <div class="max" v-if="minText">{{ minText }}</div>
           <div class="min" v-if="maxText">{{ maxText }}</div>
         </div>
       </div>
@@ -33,8 +33,9 @@ const { itemData } = defineProps({
 })
 
 const showValue = computed(() => (itemData.range.max.value - itemData.range.min.value) / 2)
-const mixText = computed(() => itemData.range.min.text)
+const minText = computed(() => itemData.range.min.text)
 const maxText = computed(() => itemData.range.max.text)
+const isShowText = computed(() => minText.value && maxText.value)
 </script>
 
 <style lang="less" scoped>

@@ -9,27 +9,31 @@ const verifyRuleMap = {
 const renderingFieldsDataMap = {
   editInput: {
     prop: 'editInput',
-    el: 'el-input',
     defaultValue: '',
     title: '单行输入',
     titleDesc: '',
     placeholder: '',
     verifyArr: [],
-    verifyOptions: [...ruleBase]
+    verifyOptions: [...ruleBase],
+    elInfo: {
+      el: 'el-input'
+    }
   },
   editTextArea: {
     prop: 'editTextArea',
-    el: 'el-input',
     defaultValue: '',
     title: '多行输入',
     titleDesc: '',
     placeholder: '',
     verifyArr: [],
-    verifyOptions: [...ruleBase]
+    verifyOptions: [...ruleBase],
+    elInfo: {
+      el: 'el-input',
+      type: 'textarea'
+    }
   },
   editInputNumber: {
     prop: 'editInputNumber',
-    el: 'el-input-number',
     defaultValue: '',
     title: '数字输入',
     titleDesc: '',
@@ -41,11 +45,14 @@ const renderingFieldsDataMap = {
         text: '限定数值范围',
         value: { option: 'numberRange', range: { max: null, min: null } }
       }
-    ]
+    ],
+    elInfo: {
+      el: 'el-input',
+      type: 'number'
+    }
   },
   slider: {
     prop: 'slider',
-    el: 'el-slider',
     defaultValue: 0,
     title: '滑动条',
     titleDesc: '',
@@ -54,11 +61,13 @@ const renderingFieldsDataMap = {
       min: { text: '不满意', value: 0 }
     },
     verifyArr: [],
-    verifyOptions: [...ruleBase]
+    verifyOptions: [...ruleBase],
+    elInfo: {
+      el: 'Slider'
+    }
   },
   rate: {
     prop: 'rate',
-    el: 'el-rate',
     defaultValue: 0,
     title: '评分',
     titleDesc: '',
@@ -71,7 +80,10 @@ const renderingFieldsDataMap = {
       eachScore: 1
     },
     verifyArr: [],
-    verifyOptions: [...ruleBase]
+    verifyOptions: [...ruleBase],
+    elInfo: {
+      el: 'Rate'
+    }
   },
   illustrationText: {
     prop: 'illustrationText',
