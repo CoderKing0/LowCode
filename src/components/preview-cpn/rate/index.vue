@@ -1,24 +1,33 @@
 <template>
   <div class="preview-rate">
-    <h1>preview-rate</h1>
+    <RateIcon
+      v-model="rateValue"
+      :rateLevel="rateLevel"
+      :iconKind="activeKind"
+      :imgKinds="imgKinds"
+      :needHandleEvents="true"
+      @setImageKinds="handleImageKinds"
+    />
   </div>
 </template>
 
 <script setup>
 import { toRefs } from 'vue'
+import RateIcon from '@/components/common/rate-icon/index.vue'
 
 const props = defineProps({
-  formValue: {
-    type: Object,
-    default: () => ({})
-  },
   itemData: {
     type: Object,
     default: () => ({})
   }
 })
 
-const { itemData, formValue } = toRefs(props)
+const { rateLevel, activeKind, imgKinds } = toRefs(props.itemData)
+const rateValue = defineModel('modelValue')
+
+const handleImageKinds = (kinds) => {
+  imgKinds.value = kinds
+}
 </script>
 
 <style lang="scss" scoped></style>

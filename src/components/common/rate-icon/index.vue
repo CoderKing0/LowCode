@@ -58,7 +58,7 @@ const isClicked = ref(false)
 const changeIconBgcImgs = (index) => {
   const fillKind = isClicked.value ? 'whole' : 'hover'
 
-  const oldKinds = new Array(rateLevel.value.count - index).fill('empty')
+  const oldKinds = new Array(rateLevel.value.count - index + 1).fill('empty')
   const newKinds = new Array(index).fill(fillKind)
   if (rateLevel.value.isHalf) {
     // 暂时没用选中状态的半星，所以统一用hover-half
@@ -90,12 +90,13 @@ const handleClick = (index) => {
 
   // 点击相同图标，取消选中
   if (prevIndex === index) {
+    isClicked.value = false
+    prevIndex = -1
     emit(
       'setImageKinds',
       imgKinds.value.map(() => 'empty')
     )
-    isClicked.value = false
-    prevIndex = -1
+    emit('update:modelValue', 0)
     return
   }
 

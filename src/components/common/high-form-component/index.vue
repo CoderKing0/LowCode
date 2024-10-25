@@ -6,14 +6,16 @@
           <template #label>
             <TitleArea :title="item.title" level="sixthLevel" />
           </template>
-          <TitleDesc :titleDesc="item.titleDesc" />
-          <component
-            :is="item.elInfo.el"
-            v-model="formValue[item.prop]"
-            v-bind="item.elInfo"
-            :itemData="item"
-            :formValue="formValue"
-          />
+          <div class="item-content">
+            <TitleDesc :titleDesc="item.titleDesc" />
+            <component
+              :is="item.elInfo.el"
+              v-model="formValue[item.prop]"
+              v-bind="item.elInfo"
+              :itemData="item"
+              :formValue="formValue"
+            />
+          </div>
         </el-form-item>
       </template>
     </el-form>
@@ -70,6 +72,10 @@ onBeforeMount(() => {
   .title-area {
     display: inline-block;
     margin-bottom: 0;
+  }
+
+  .item-content {
+    width: 100%;
   }
 
   .title-desc {
