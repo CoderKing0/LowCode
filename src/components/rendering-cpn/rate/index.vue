@@ -4,7 +4,7 @@
     <TitleDesc :titleDesc="itemData.titleDesc" />
     <div class="content">
       <RateIcon
-        :iconCount="itemData.rateLevel.count"
+        :rateLevel="itemData.rateLevel"
         :iconKind="itemData.activeKind"
         :imgKinds="itemData.imgKinds"
       />

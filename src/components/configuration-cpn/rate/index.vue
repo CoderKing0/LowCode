@@ -38,13 +38,12 @@
         <div class="rate-default">
           <TitleArea title="默认值" level="sixthLevel" />
           <RateIcon
-            :iconCount="rateLevel.count"
+            v-model="rateValue"
+            :rateLevel="rateLevel"
             :iconKind="activeKind"
-            :isPanel="true"
             :imgKinds="imgKinds"
-            @iconMouseEnter="handleIconMouseEnter"
-            @iconMouseLeave="handleIconMouseLeave"
-            @iconClick="handleIconClick"
+            :needHandleEvents="true"
+            @setImageKinds="handleImageKinds"
           />
         </div>
       </template>
@@ -57,7 +56,6 @@ import useComputed from '@/hooks/useComputed'
 import TitleArea from '@/components/common/title-area/index.vue'
 import PanelBase from '@/components/configuration-cpn/panel-base/index.vue'
 import RateIcon from '@/components/common/rate-icon/index.vue'
-import { ref } from 'vue'
 
 const allKinds = useComputed(1, 'allKinds')
 const activeKind = useComputed(1, 'activeKind')
@@ -69,55 +67,9 @@ const handleActiveKind = (kind) => {
   activeKind.value = kind
 }
 
-// 处理 “默认值” 模块相关逻辑 Start
-
-const isClicked = ref(false)
-// 修改背景图类型：empty、hover、hover-half、whole
-const changeIconBgcImgs = (index) => {
-  const fillKind = isClicked.value ? 'whole' : 'hover'
-
-  const oldKinds = new Array(rateLevel.value.count - index).fill('empty')
-  const newKinds = new Array(index).fill(fillKind)
-  if (rateLevel.value.isHalf) {
-    // 暂时没用选中状态的半星，所以统一用hover-half
-    newKinds.push('hover-half')
-  } else {
-    newKinds.push(fillKind)
-  }
-  imgKinds.value = [...newKinds, ...oldKinds]
+const handleImageKinds = (kinds) => {
+  imgKinds.value = kinds
 }
-
-// 鼠标移入时，改变背景图
-const handleIconMouseEnter = (index) => {
-  if (!isClicked.value) {
-    changeIconBgcImgs(index)
-  }
-}
-
-const handleIconMouseLeave = () => {
-  if (!isClicked.value) {
-    imgKinds.value = imgKinds.value.map(() => 'empty')
-  }
-}
-
-let prevIndex = -1
-const handleIconClick = (index) => {
-  // 点击相同图标，取消选中
-  if (prevIndex === index) {
-    imgKinds.value = imgKinds.value.map(() => 'empty')
-    isClicked.value = false
-    prevIndex = -1
-    return
-  }
-
-  // 点击不同图标，改变选中状态
-  prevIndex = index
-  isClicked.value = true
-  changeIconBgcImgs(index)
-  rateValue.value = rateLevel.value.isHalf ? index + 0.5 : index + 1
-}
-
-// 处理 “默认值” 模块相关逻辑 end
 </script>
 
 <style lang="less" scoped>

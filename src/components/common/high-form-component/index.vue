@@ -25,7 +25,7 @@ import { onBeforeMount, reactive } from 'vue'
 import TitleArea from '@/components/common/title-area/index.vue'
 import TitleDesc from '@/components/common/title-desc/index.vue'
 import { verifyRuleMap } from '@/components/fieldComptData'
-import componentsMap from '@/components/preview/componentsMap'
+import componentsMap from '@/components/preview-cpn/componentsMap'
 
 const props = defineProps({
   formConfig: {

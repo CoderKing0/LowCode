@@ -1,5 +1,5 @@
-import Slider from '@/components/preview/slider/index.vue'
-import Rate from '@/components/preview/rate/index.vue'
+import Slider from '@/components/preview-cpn/slider/index.vue'
+import Rate from '@/components/preview-cpn/rate/index.vue'
 
 const componentsMap = new Map()
 
