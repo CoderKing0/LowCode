@@ -13,5 +13,9 @@ module.exports = {
   },
   rules: {
     'vue/multi-word-component-names': 'off'
+  },
+  globals: {
+    process: 'readonly',
+    $alert: 'readonly'
   }
 }

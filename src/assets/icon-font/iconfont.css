@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont'; /* Project id 4603118 */
   src:
-    url('iconfont.woff2?t=1719834559440') format('woff2'),
-    url('iconfont.woff?t=1719834559440') format('woff'),
-    url('iconfont.ttf?t=1719834559440') format('truetype');
+    url('iconfont.woff2?t=1732101515820') format('woff2'),
+    url('iconfont.woff?t=1732101515820') format('woff'),
+    url('iconfont.ttf?t=1732101515820') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,38 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-loading:before {
+  content: '\e62b';
+}
+
+.icon-wait:before {
+  content: '\e68d';
+}
+
+.icon-help:before {
+  content: '\e67c';
+}
+
+.icon-success:before {
+  content: '\e617';
+}
+
+.icon-error:before {
+  content: '\e6c6';
+}
+
+.icon-back:before {
+  content: '\e604';
+}
+
+.icon-info:before {
+  content: '\e605';
+}
+
+.icon-warning:before {
+  content: '\e675';
 }
 
 .icon-setting:before {
@@ -26,15 +58,15 @@
   content: '\e61a';
 }
 
-.icon-edit:before {
+.icon-bianxie:before {
   content: '\e601';
 }
 
-.icon-preview:before {
+.icon-zitiyulan:before {
   content: '\ec86';
 }
 
-.icon-publish:before {
+.icon-fabu:before {
   content: '\e61e';
 }
 

@@ -21,7 +21,7 @@ function handleNetworkError(errStatus) {
     errMessage = `无法连接到服务器！`
   }
 
-  // message.error(errMessage)
+  $alert({ message: errMessage, type: 'error' })
 }
 
 // 授权错误处理
@@ -32,8 +32,9 @@ const authErrMap = {
 }
 
 const handleAuthError = (errno) => {
+  const errMessage = authErrMap[errno] || ''
   if (authErrMap[errno]) {
-    // message.error(authErrMap[errno])
+    $alert({ message: errMessage, type: 'error' })
   }
 }
 
@@ -43,8 +44,9 @@ const otherErrMap = {
   '-2002': 'xxx'
 }
 const handleOtherError = (errno) => {
+  const errMessage = otherErrMap[errno] || ''
   if (otherErrMap[errno]) {
-    // message.error(otherErrMap[errno])
+    $alert({ message: errMessage, type: 'error' })
   }
 }
 
