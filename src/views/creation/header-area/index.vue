@@ -63,7 +63,7 @@ const handlePreview = () => {
 }
 
 const handlePublish = () => {
-  console.log('用户发布数据了~~~')
+  creationStore.submitFormConfig()
 }
 </script>
 

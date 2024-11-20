@@ -1,5 +1,12 @@
 import axios from 'axios'
-import { BASE_URL, TIME_OUT } from './config'
+import {
+  BASE_URL,
+  TIME_OUT,
+  requestInterceptor,
+  requestInterceptorCatch,
+  responseInterceptor,
+  responseInterceptorCatch
+} from './config'
 
 class Request {
   constructor(baseURL, timeout) {
@@ -7,6 +14,9 @@ class Request {
       baseURL,
       timeout
     })
+
+    this.instance.interceptors.request.use(requestInterceptor, requestInterceptorCatch)
+    this.instance.interceptors.response.use(responseInterceptor, responseInterceptorCatch)
   }
 
   request(config) {
