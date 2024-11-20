@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { setObjValue, getObjValue } from '@/utils/setOrGetObjValue'
 import { OperateType } from '@/constant/creation'
 import templateData from '@/components/material-cpn/style-wrapper/style-data'
+import { postFormConfig } from '@/service'
 
 const useCreationStore = defineStore('creation', {
   state: () => ({
@@ -63,6 +64,16 @@ const useCreationStore = defineStore('creation', {
     // 深拷贝当前选中组件列表作为预览页表单配置
     getPreviewFormConfig() {
       return _.cloneDeep(this.curSelectedComptList)
+    },
+    // 提交配置的表单数据
+    submitFormConfig() {
+      const param = {
+        formTitle: this.formTitle,
+        formComptConfig: this.curSelectedComptList,
+        formStyleTemplate: this.actingStyleTemplate
+      }
+
+      postFormConfig(param)
     }
   }
 })
