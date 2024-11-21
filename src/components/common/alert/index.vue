@@ -20,8 +20,9 @@ import { alertIconColorMap } from '@/assets/data/icon-color'
 const props = defineProps({
   message: {
     type: String,
-    default: ''
+    default: '提示内容'
   },
+  // type: 'success' | 'info' | 'warning' | 'error' | 'help' | 'loading' | 'wait'
   type: {
     type: String,
     default: 'success'

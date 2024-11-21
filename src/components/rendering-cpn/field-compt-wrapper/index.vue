@@ -26,7 +26,10 @@ const props = defineProps({
 
 const emit = defineEmits(['operated'])
 const handleOperation = (type) => {
-  emit('operated', type, props.curIndex, props.itemData)
+  const { installConfirmFn } = $confirm({ message: '确认执行删除操作吗？' })
+  installConfirmFn(() => {
+    emit('operated', type, props.curIndex, props.itemData)
+  })
 }
 </script>
 

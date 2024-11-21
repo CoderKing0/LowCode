@@ -69,8 +69,8 @@ const useCreationStore = defineStore('creation', {
     submitFormConfig() {
       const param = {
         formTitle: this.formTitle,
-        formComptConfig: this.curSelectedComptList,
-        formStyleTemplate: this.actingStyleTemplate
+        formComptConfig: JSON.stringify(this.curSelectedComptList),
+        formStyleTemplate: JSON.stringify(this.actingStyleTemplate)
       }
 
       postFormConfig(param)
