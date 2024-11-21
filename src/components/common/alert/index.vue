@@ -1,14 +1,16 @@
 <template>
-  <div class="alert-container">
-    <div class="alert-tip">
-      <span
-        :class="['iconfont', `icon-${type}`]"
-        class="alert-icon"
-        :style="{ color: alertIconColorMap[type] }"
-      ></span>
-      <span class="text">{{ message }}</span>
+  <Transition name="fade">
+    <div v-if="alertIsShow" class="alert-container">
+      <div class="alert-tip">
+        <span
+          :class="['iconfont', `icon-${type}`]"
+          class="alert-icon"
+          :style="{ color: alertIconColorMap[type] }"
+        ></span>
+        <span class="text">{{ message }}</span>
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <script setup>
@@ -32,14 +34,12 @@ const props = defineProps({
 
 const { interval } = toRefs(props)
 
-let alertTimer = 0
 const alertIsShow = ref(false)
 const showAlert = () => {
-  clearTimeout(alertTimer)
   alertIsShow.value = true
-  alertTimer = setTimeout(() => {
+  setTimeout(() => {
     alertIsShow.value = false
-  }, interval)
+  }, interval.value)
 }
 
 defineExpose({
@@ -48,7 +48,26 @@ defineExpose({
 </script>
 
 <style lang="less" scoped>
+.fade-enter-active {
+  animation: fadeAnim 0.8s ease;
+}
+
+.fade-leave-active {
+  animation: fadeAnim 0.8s ease reverse;
+}
+
+@keyframes fadeAnim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .alert-container {
+  z-index: 99999;
   position: fixed;
   top: 25%;
   left: 50%;
