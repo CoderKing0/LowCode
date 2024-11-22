@@ -21,7 +21,7 @@ defineProps({
 <style lang="less" scoped>
 .bottom-area {
   position: absolute;
-  z-index: 99;
+  z-index: 19;
   bottom: 0;
   display: flex;
   justify-content: space-between;

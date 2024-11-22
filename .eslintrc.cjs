@@ -16,6 +16,7 @@ module.exports = {
   },
   globals: {
     process: 'readonly',
-    $alert: 'readonly'
+    $alert: 'readonly',
+    $confirm: 'readonly'
   }
 }
