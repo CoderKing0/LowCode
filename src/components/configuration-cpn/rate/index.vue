@@ -53,15 +53,16 @@
 
 <script setup>
 import useComputed from '@/hooks/useComputed'
+import { ComputedType } from '@/constant/creation'
 import TitleArea from '@/components/common/title-area/index.vue'
 import PanelBase from '@/components/configuration-cpn/panel-base/index.vue'
 import RateIcon from '@/components/common/rate-icon/index.vue'
 
-const allKinds = useComputed(1, 'allKinds')
-const activeKind = useComputed(1, 'activeKind')
-const imgKinds = useComputed(1, 'imgKinds')
-const rateLevel = useComputed(1, 'rateLevel')
-const rateValue = useComputed(1, 'defaultValue')
+const allKinds = useComputed(ComputedType.OPERATE_STORE_DATA, 'allKinds')
+const activeKind = useComputed(ComputedType.OPERATE_STORE_DATA, 'activeKind')
+const imgKinds = useComputed(ComputedType.OPERATE_STORE_DATA, 'imgKinds')
+const rateLevel = useComputed(ComputedType.OPERATE_STORE_DATA, 'rateLevel')
+const rateValue = useComputed(ComputedType.OPERATE_STORE_DATA, 'defaultValue')
 
 const handleActiveKind = (kind) => {
   activeKind.value = kind

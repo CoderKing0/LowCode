@@ -37,6 +37,7 @@
 
 <script setup>
 import useComputed from '@/hooks/useComputed'
+import { ComputedType } from '@/constant/creation'
 import inputPanelBase from '@/components/configuration-cpn/input-panel-base/index.vue'
 import TitleArea from '@/components/common/title-area/index.vue'
 import EditRange from '@/components/configuration-cpn/edit-range/index.vue'
@@ -53,9 +54,9 @@ defineProps({
 })
 
 // 被选中的规则列表
-const verifyArr = useComputed(1, 'verifyArr')
+const verifyArr = useComputed(ComputedType.OPERATE_STORE_DATA, 'verifyArr')
 // 当前组件需要供用户选择的规则列表
-const verifyOptions = useComputed(1, 'verifyOptions')
+const verifyOptions = useComputed(ComputedType.OPERATE_STORE_DATA, 'verifyOptions')
 </script>
 
 <style lang="less" scoped>

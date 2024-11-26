@@ -28,15 +28,16 @@
 <script setup>
 import { ref, watch } from 'vue'
 import useComputed from '@/hooks/useComputed'
+import { ComputedType } from '@/constant/creation'
 import PanelBase from '@/components/configuration-cpn/panel-base/index.vue'
 import TitleArea from '@/components/common/title-area/index.vue'
 import EditRange from '@/components/configuration-cpn/edit-range/index.vue'
 
 // 使用useComputed包裹的value，才能够使用v-model双向绑定
-const maxScore = useComputed(1, 'range.max')
-const minScore = useComputed(1, 'range.min')
-const maxText = useComputed(1, 'range.max.text')
-const minText = useComputed(1, 'range.min.text')
+const maxScore = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.max')
+const minScore = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.min')
+const maxText = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.max.text')
+const minText = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.min.text')
 
 const isShowText = ref(true)
 

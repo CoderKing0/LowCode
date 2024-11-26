@@ -12,9 +12,10 @@
 </template>
 
 <script setup>
-import useComputed from '@/hooks/useComputed'
-import TitleArea from '@/components/common/title-area/index.vue'
 import { ref } from 'vue'
+import useComputed from '@/hooks/useComputed'
+import { ComputedType } from '@/constant/creation'
+import TitleArea from '@/components/common/title-area/index.vue'
 const props = defineProps({
   title: {
     type: String,
@@ -35,7 +36,7 @@ const props = defineProps({
 })
 
 // 使用useComputed包裹的value，才能够使用v-model双向绑定
-const curValue = useComputed(1, props.path)
+const curValue = useComputed(ComputedType.OPERATE_STORE_DATA, props.path)
 
 // 输入框聚焦，选中输入框中的所有内容
 const inputRef = ref('inputRef')
