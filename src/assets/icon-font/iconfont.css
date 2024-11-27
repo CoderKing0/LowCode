@@ -58,15 +58,15 @@
   content: '\e61a';
 }
 
-.icon-bianxie:before {
+.icon-edit:before {
   content: '\e601';
 }
 
-.icon-zitiyulan:before {
+.icon-preview:before {
   content: '\ec86';
 }
 
-.icon-fabu:before {
+.icon-publish:before {
   content: '\e61e';
 }
 

@@ -1,13 +1,14 @@
 import _ from 'lodash'
 import { defineStore } from 'pinia'
-import { setObjValue, getObjValue } from '@/utils/setOrGetObjValue'
-import { OperateType } from '@/constant/creation'
-import templateData from '@/components/material-cpn/style-wrapper/style-data'
 import { postFormConfig } from '@/service'
+import { OperateType } from '@/constant/creation'
+import { setObjValue, getObjValue } from '@/utils/setOrGetObjValue'
+import templateData from '@/components/material-cpn/style-wrapper/style-data'
 
 const useCreationStore = defineStore('creation', {
   state: () => ({
     formTitle: '自定义标题', // 项目标题
+    curComptId: 0, // 当前表单新增组件的id（递增）
     curSelectedComptList: [], // 当前选中的组件列表
     draggingCompt: null, // 当前拖拽的组件
     clickingComptTitle: '', // 当前点击的组件标题
@@ -22,19 +23,26 @@ const useCreationStore = defineStore('creation', {
     // 更新当前正在点击的组件
     setCurClickingCompt(compt) {
       this.clickingCompt = compt
-    },
-    // 更新当前正在点击的组件标题
-    setCurClickingComptTitle(title) {
-      this.clickingComptTitle = title
+      this.clickingComptTitle = compt?.title || '字段属性'
     },
     // 更新当前选中的组件列表
     setCurSelectedComptList(type, index, compt) {
+      if (type !== OperateType.DELETE) {
+        this.curComptId += 1
+        compt.id = `${compt.prop}_${this.curComptId}`
+      }
+
       switch (type) {
         case OperateType.PUSH:
           this.curSelectedComptList.push(compt)
           break
         case OperateType.DELETE:
           this.curSelectedComptList.splice(index, 1)
+
+          // 当前删除组件为选中组件时，配置面板恢复初始状态
+          if (this.clickingCompt.id === compt.id) {
+            this.setCurClickingCompt(null)
+          }
           break
         case OperateType.INSERT:
           this.curSelectedComptList.splice(index, 0, this.draggingCompt)
@@ -73,7 +81,9 @@ const useCreationStore = defineStore('creation', {
         formStyleTemplate: JSON.stringify(this.actingStyleTemplate)
       }
 
-      postFormConfig(param)
+      // 打开注释即可提交表单数据
+      // postFormConfig(param)
+      console.log(param, '提交的表单数据')
     }
   }
 })

@@ -57,7 +57,7 @@ const handleComptClick = (curCompt) => {
 // 删除或者复制某个组件
 const handleWrapperOperation = (type, curIndex, curCompt) => {
   if (type === OperateType.DELETE) {
-    creationStore.setCurSelectedComptList(OperateType.DELETE, curIndex)
+    creationStore.setCurSelectedComptList(OperateType.DELETE, curIndex, curCompt)
   } else {
     creationStore.setCurSelectedComptList(OperateType.COPY, curIndex, _.cloneDeep(curCompt))
   }

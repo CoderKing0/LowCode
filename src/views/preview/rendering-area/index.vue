@@ -5,7 +5,7 @@
     :formWidth="58"
   >
     <template #content>
-      <HighComponent :formConfig="previewFormConfig" />
+      <HighFormComponent :formConfig="previewFormConfig" />
     </template>
   </RenderingAreaWrapper>
 </template>
@@ -14,7 +14,7 @@
 import { storeToRefs } from 'pinia'
 import useCreationStore from '@/stores/creation'
 import RenderingAreaWrapper from '@/components/common/rendering-area-wrapper/index.vue'
-import HighComponent from '@/components/common/high-form-component/index.vue'
+import HighFormComponent from '@/components/preview-cpn/high-form-component/index.vue'
 
 const creationStore = useCreationStore()
 
