@@ -1,6 +1,7 @@
 <template>
   <div class="receive-draggable-area">
     <Draggable class="draggable" group="shared" @add="handleAddCompt">
+      <div v-if="isShowTip" class="empty-tip" :style="emptyTipStyle">请从左侧拖拽来添加字段</div>
       <template v-for="(item, index) in comptList" :key="item.compt">
         <FieldComptWrapper
           :itemData="item"
@@ -22,11 +23,12 @@
 
 <script setup>
 import _ from 'lodash'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import useCreationStore from '@/stores/creation'
 import { OperateType } from '@/constant/creation'
 import { componentMap } from '@/components/fieldComptMap'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
+import { computed, onMounted, onUnmounted, ref, toRefs } from 'vue'
 import FieldComptWrapper from '@/components/rendering-cpn/field-compt-wrapper/index.vue'
 const props = defineProps({
   // 需要渲染的组件列表
@@ -42,6 +44,22 @@ const props = defineProps({
 })
 
 const creationStore = useCreationStore()
+const { draggingCompt } = storeToRefs(creationStore)
+const { comptList, originUser } = toRefs(props)
+
+const isShowTip = computed(() => {
+  return comptList.value.length <= 0 && !draggingCompt.value
+})
+
+const emptyTipStyle = computed(() => {
+  if (originUser.value === 'rendering') {
+    return {
+      fontSize: '18px'
+    }
+  }
+
+  return null
+})
 
 // 点击组件，添加样式
 const curClickIndex = ref(-1)
@@ -51,7 +69,7 @@ const handleWrapperClick = (index = -1) => {
 
 // 设置当前组件的使用者
 const setCurComptUser = () => {
-  creationStore.setCurOperatedOrigin(props.originUser)
+  creationStore.setCurOperatedOrigin(originUser.value)
 }
 
 // 拿到拖拽过来的组件
@@ -64,7 +82,6 @@ const handleAddCompt = (curCompt) => {
 // 点击组件
 const handleComptClick = (curCompt) => {
   creationStore.setCurClickingCompt(curCompt)
-  creationStore.setCurClickingComptTitle(curCompt.title)
 }
 
 // 删除或者复制某个组件
@@ -88,5 +105,15 @@ onUnmounted(() => {
 <style lang="less" scoped>
 .receive-draggable-area {
   height: 100%;
+
+  .empty-tip {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #c0c0c3;
+    text-align: center;
+  }
 }
 </style>

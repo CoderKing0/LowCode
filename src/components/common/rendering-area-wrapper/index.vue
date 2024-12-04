@@ -12,7 +12,6 @@
         <el-scrollbar class="scroll">
           <slot name="content"></slot>
         </el-scrollbar>
-        <div v-show="isShowTip" class="empty-tip">请从左侧拖拽来添加字段</div>
       </div>
     </div>
 
@@ -127,21 +126,11 @@ watch(
       .scroll {
         padding: 0 20px;
         box-sizing: border-box;
-      }
-    }
 
-    .empty-tip {
-      z-index: 19;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 200px;
-      height: 28px;
-      margin: auto;
-      font-size: 18px;
-      color: #c0c0c3;
+        :deep(.el-scrollbar__view) {
+          height: 100%;
+        }
+      }
     }
   }
 }
