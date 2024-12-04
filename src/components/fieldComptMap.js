@@ -8,6 +8,7 @@ import Slider from '@/components/rendering-cpn/slider/index.vue'
 import SliderPanel from '@/components/configuration-cpn/slider/index.vue'
 import Rate from '@/components/rendering-cpn/rate/index.vue'
 import RatePanel from '@/components/configuration-cpn/rate/index.vue'
+import SubForm from '@/components/rendering-cpn/sub-form/index.vue'
 
 const componentMap = new Map()
 componentMap.set('editInput', EditInput)
@@ -15,6 +16,7 @@ componentMap.set('editTextArea', EditTextArea)
 componentMap.set('editInputNumber', EditInputNumber)
 componentMap.set('slider', Slider)
 componentMap.set('rate', Rate)
+componentMap.set('subForm', SubForm)
 
 const componentPanelMap = new Map()
 componentPanelMap.set('editInput', EditInputPanel)

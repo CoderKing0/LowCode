@@ -9,6 +9,7 @@ const useCreationStore = defineStore('creation', {
   state: () => ({
     formTitle: '自定义标题', // 项目标题
     curComptId: 0, // 当前表单新增组件的id（递增）
+    curOrigin: 'rendering', // 当前操作的是渲染区组件还是子表单组件: 'rendering' | 被操作的子表单Id
     curSelectedComptList: [], // 当前选中的组件列表
     draggingCompt: null, // 当前拖拽的组件
     clickingComptTitle: '', // 当前点击的组件标题
@@ -25,19 +26,41 @@ const useCreationStore = defineStore('creation', {
       this.clickingCompt = compt
       this.clickingComptTitle = compt?.title || '字段属性'
     },
-    // 更新当前选中的组件列表
-    setCurSelectedComptList(type, index, compt) {
+    // 更新当前选中的组件列表之前，需要先设置即将被操作的对象是渲染区还是子表单
+    setCurOperatedOrigin(origin) {
+      this.curOrigin = origin
+    },
+    // 更新选中组件列表之前的前置操作
+    updateCurSelectedComptListBefore(type, compt) {
+      // 非删除操作时，需要先设置组件id
       if (type !== OperateType.DELETE) {
         this.curComptId += 1
         compt.id = `${compt.prop}_${this.curComptId}`
       }
 
+      // 获取即将被操作的组件列表
+      let curComptList = this.curSelectedComptList
+      if (this.curOrigin !== 'rendering') {
+        const curSubForm = this.curSelectedComptList.find((item) => item.id === this.curOrigin)
+        curComptList = curSubForm.children || []
+      }
+
+      return curComptList
+    },
+    // 更新当前选中的组件列表
+    setCurSelectedComptList(type, index, compt) {
+      if (!compt) {
+        compt = this.draggingCompt
+      }
+
+      const curComptList = this.updateCurSelectedComptListBefore(type, compt)
+
       switch (type) {
         case OperateType.PUSH:
-          this.curSelectedComptList.push(compt)
+          curComptList.push(compt)
           break
         case OperateType.DELETE:
-          this.curSelectedComptList.splice(index, 1)
+          curComptList.splice(index, 1)
 
           // 当前删除组件为选中组件时，配置面板恢复初始状态
           if (this.clickingCompt.id === compt.id) {
@@ -45,10 +68,10 @@ const useCreationStore = defineStore('creation', {
           }
           break
         case OperateType.INSERT:
-          this.curSelectedComptList.splice(index, 0, this.draggingCompt)
+          curComptList.splice(index, 0, this.draggingCompt)
           break
         case OperateType.COPY:
-          this.curSelectedComptList.splice(index, 0, compt)
+          curComptList.splice(index, 0, compt)
       }
     },
     // 通过右侧面板更新选中的组件数据

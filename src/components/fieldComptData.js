@@ -15,8 +15,9 @@ const renderingFieldsDataMap = {
     placeholder: '',
     verifyArr: [],
     verifyOptions: [...ruleBase],
+    // 预览页渲染组件的想关信息
     elInfo: {
-      el: 'el-input'
+      el: 'el-input' // el：element-ui组件的名称，type:输入框类型
     }
   },
   editTextArea: {
@@ -173,7 +174,19 @@ const renderingFieldsDataMap = {
     verifyArr: [],
     verifyOptions: [...ruleBase]
   },
-  subForm: {},
+  subForm: {
+    prop: 'subForm',
+    defaultValue: '',
+    title: '子表单',
+    titleDesc: '',
+    placeholder: '',
+    verifyArr: [],
+    verifyOptions: [...ruleBase],
+    children: [],
+    elInfo: {
+      el: 'el-input'
+    }
+  },
   richtext: {}
 }
 
