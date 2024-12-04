@@ -2,7 +2,13 @@
   <div class="receive-draggable-area">
     <Draggable class="draggable" group="shared" @add="handleAddCompt">
       <template v-for="(item, index) in comptList" :key="item.compt">
-        <FieldComptWrapper :itemData="item" :curIndex="index" @operated="handleWrapperOperation">
+        <FieldComptWrapper
+          :itemData="item"
+          :curIndex="index"
+          :curClickIndex="curClickIndex"
+          @click.stop="handleWrapperClick(index)"
+          @operated="handleWrapperOperation"
+        >
           <component
             :is="componentMap.get(item.compt)"
             :itemData="item"
@@ -16,6 +22,7 @@
 
 <script setup>
 import _ from 'lodash'
+import { onMounted, onUnmounted, ref } from 'vue'
 import useCreationStore from '@/stores/creation'
 import { OperateType } from '@/constant/creation'
 import { componentMap } from '@/components/fieldComptMap'
@@ -35,6 +42,12 @@ const props = defineProps({
 })
 
 const creationStore = useCreationStore()
+
+// 点击组件，添加样式
+const curClickIndex = ref(-1)
+const handleWrapperClick = (index = -1) => {
+  curClickIndex.value = index
+}
 
 // 设置当前组件的使用者
 const setCurComptUser = () => {
@@ -63,6 +76,13 @@ const handleWrapperOperation = (type, curIndex, curCompt) => {
     creationStore.setCurSelectedComptList(OperateType.COPY, curIndex, _.cloneDeep(curCompt))
   }
 }
+
+onMounted(() => {
+  document.addEventListener('click', handleWrapperClick)
+})
+onUnmounted(() => {
+  document.removeEventListener('click', handleWrapperClick)
+})
 </script>
 
 <style lang="less" scoped>
