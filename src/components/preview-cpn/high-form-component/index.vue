@@ -1,24 +1,26 @@
 <template>
-  <div class="high-form-component">
-    <el-form :model="formValue" label-position="top" label-width="auto" :rules="rules">
-      <template v-for="item in formConfig" :key="item.prop">
-        <el-form-item :prop="item.prop">
-          <template #label>
-            <TitleArea :title="item.title" level="sixthLevel" />
-          </template>
-          <div class="item-content">
-            <TitleDesc :titleDesc="item.titleDesc" />
-            <component
-              :is="item.elInfo.el"
-              v-model="formValue[item.prop]"
-              v-bind="item.elInfo"
-              :itemData="item"
-              :formValue="formValue"
-            />
-          </div>
-        </el-form-item>
-      </template>
-    </el-form>
+  <div class="high-form-component" :style="{ height: scrollAreaHeight }">
+    <el-scrollbar class="scroll" always>
+      <el-form :model="formValue" label-position="top" label-width="auto" :rules="rules">
+        <template v-for="item in formConfig" :key="item.prop">
+          <el-form-item :prop="item.prop">
+            <template #label>
+              <TitleArea :title="item.title" level="sixthLevel" />
+            </template>
+            <div class="item-content">
+              <TitleDesc :titleDesc="item.titleDesc" />
+              <component
+                :is="item.elInfo.el"
+                v-model="formValue[item.prop]"
+                v-bind="item.elInfo"
+                :itemData="item"
+                :formValue="formValue"
+              />
+            </div>
+          </el-form-item>
+        </template>
+      </el-form>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -33,6 +35,10 @@ const props = defineProps({
   formConfig: {
     type: Array,
     default: () => []
+  },
+  scrollAreaHeight: {
+    type: String,
+    default: 'auto'
   }
 })
 
@@ -69,6 +75,10 @@ onBeforeMount(() => {
 
 <style lang="less" scoped>
 .high-form-component {
+  .scroll {
+    padding: 0 20px;
+  }
+
   .title-area {
     display: inline-block;
     margin-bottom: 0;

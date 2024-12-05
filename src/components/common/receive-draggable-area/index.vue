@@ -1,22 +1,24 @@
 <template>
-  <div class="receive-draggable-area">
-    <Draggable class="draggable" group="shared" @add="handleAddCompt">
-      <div v-if="isShowTip" class="empty-tip" :style="emptyTipStyle">请从左侧拖拽来添加字段</div>
-      <template v-for="(item, index) in comptList" :key="item.compt">
-        <FieldComptWrapper
-          :itemData="item"
-          :curIndex="index"
-          :activeCompt="clickingCompt"
-          @operated="handleWrapperOperation"
-        >
-          <component
-            :is="componentMap.get(item.compt)"
+  <div class="receive-draggable-area" :style="{ height: scrollAreaHeight }">
+    <el-scrollbar class="scroll" always>
+      <Draggable class="draggable" group="shared" @add="handleAddCompt">
+        <div v-if="isShowTip" class="empty-tip" :style="emptyTipStyle">请从左侧拖拽来添加字段</div>
+        <template v-for="(item, index) in comptList" :key="item.compt">
+          <FieldComptWrapper
             :itemData="item"
-            @click.stop="handleComptClick(item)"
-          />
-        </FieldComptWrapper>
-      </template>
-    </Draggable>
+            :curIndex="index"
+            :activeCompt="clickingCompt"
+            @operated="handleWrapperOperation"
+          >
+            <component
+              :is="componentMap.get(item.compt)"
+              :itemData="item"
+              @click.stop="handleComptClick(item)"
+            />
+          </FieldComptWrapper>
+        </template>
+      </Draggable>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -39,11 +41,20 @@ const props = defineProps({
   originUser: {
     type: String,
     default: 'rendering'
+  },
+  /**
+   * 可滚动区域高度：
+   *  不传：需要通过:deep()修改receive-draggable-area的高度
+   *  传递：可以直接在JS中算出来之后，通过参数传递
+   */
+  scrollAreaHeight: {
+    type: String,
+    default: 'auto'
   }
 })
 
 const creationStore = useCreationStore()
-const { draggingCompt, clickingCompt } = storeToRefs(creationStore)
+const { draggingCompt, clickingCompt, curOrigin } = storeToRefs(creationStore)
 const { comptList, originUser } = toRefs(props)
 
 const isShowTip = computed(() => {
@@ -62,12 +73,28 @@ const emptyTipStyle = computed(() => {
 
 // 设置当前组件的使用者
 const setCurComptUser = () => {
+  if (curOrigin.value !== originUser.value) {
+    switch (originUser.value) {
+      case 'rendering':
+        $alert({ message: '开始操作表单~', type: 'info' })
+        break
+      default:
+        $alert({ message: '开始操作子表单~', type: 'info' })
+    }
+  }
+
   creationStore.setCurOperatedOrigin(originUser.value)
 }
 
 // 拿到拖拽过来的组件
 const handleAddCompt = (curCompt) => {
+  if (originUser.value !== 'rendering' && draggingCompt.value.compt === 'subForm') {
+    $alert({ message: '子表单字段不支持嵌套！', type: 'warning' })
+    return
+  }
+
   setCurComptUser()
+
   creationStore.setCurSelectedComptList(OperateType.INSERT, curCompt.newIndex)
   creationStore.setCurDraggingCompt(null)
 }
@@ -90,7 +117,14 @@ const handleWrapperOperation = (type, curIndex, curCompt) => {
 
 <style lang="less" scoped>
 .receive-draggable-area {
-  height: 100%;
+  .scroll {
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    :deep(.el-scrollbar__view) {
+      height: 100%;
+    }
+  }
 
   .empty-tip {
     position: relative;

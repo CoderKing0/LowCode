@@ -9,9 +9,7 @@
 
       <!-- 组件渲染区 -->
       <div class="scroll-area" :style="{ height: scrollAreaHeight }">
-        <el-scrollbar class="scroll">
-          <slot name="content"></slot>
-        </el-scrollbar>
+        <slot name="content"></slot>
       </div>
     </div>
 
@@ -30,23 +28,10 @@ const props = defineProps({
     type: String,
     required: true
   },
-  /**
-   * 可滚动区域高度：
-   *  不传：需要通过:deep()修改rendering-area-wrapper的高度
-   *  传递：可以直接在JS中算出来之后，通过参数传递
-   */
-  scrollAreaHeight: {
-    type: String,
-    default: 'auto'
-  },
   // 当前选中的样式模板
   actingStyleTemplate: {
     type: Object,
     required: true
-  },
-  isShowTip: {
-    type: Boolean,
-    default: false
   },
   // 表单宽度，这里的数字是 “百分比”
   formWidth: {
@@ -122,15 +107,9 @@ watch(
     margin: 30px auto 0;
     background-color: #fff;
 
-    .scroll-area {
-      .scroll {
-        padding: 0 20px;
-        box-sizing: border-box;
-
-        :deep(.el-scrollbar__view) {
-          height: 100%;
-        }
-      }
+    :deep(.draggable) {
+      width: 100%;
+      height: 100%;
     }
   }
 }
