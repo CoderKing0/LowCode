@@ -35,7 +35,7 @@ const useCreationStore = defineStore('creation', {
       // 非删除操作时，需要先设置组件id
       if (type !== OperateType.DELETE) {
         this.curComptId += 1
-        compt.id = `${compt.prop}_${this.curComptId}`
+        compt.id = this.curComptId
       }
 
       // 获取即将被操作的组件列表
@@ -43,6 +43,10 @@ const useCreationStore = defineStore('creation', {
       if (this.curOrigin !== 'rendering') {
         const curSubForm = this.curSelectedComptList.find((item) => item.id === this.curOrigin)
         curComptList = curSubForm.children || []
+
+        if (type !== OperateType.DELETE) {
+          compt.id = `${curSubForm.id}_${this.curComptId}`
+        }
       }
 
       return curComptList
@@ -57,7 +61,7 @@ const useCreationStore = defineStore('creation', {
 
       switch (type) {
         case OperateType.PUSH:
-          curComptList.push(compt)
+          curComptList.unshift(compt)
           break
         case OperateType.DELETE:
           curComptList.splice(index, 1)
