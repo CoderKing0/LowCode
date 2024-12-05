@@ -73,6 +73,8 @@ const useCreationStore = defineStore('creation', {
         case OperateType.COPY:
           curComptList.splice(index, 0, compt)
       }
+
+      this.curOrigin = 'rendering'
     },
     // 通过右侧面板更新选中的组件数据
     setCurClickingComptData(path, value) {

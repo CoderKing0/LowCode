@@ -6,14 +6,13 @@
         <FieldComptWrapper
           :itemData="item"
           :curIndex="index"
-          :curClickIndex="curClickIndex"
-          @click.stop="handleWrapperClick(index)"
+          :activeCompt="clickingCompt"
           @operated="handleWrapperOperation"
         >
           <component
             :is="componentMap.get(item.compt)"
             :itemData="item"
-            @click="handleComptClick(item)"
+            @click.stop="handleComptClick(item)"
           />
         </FieldComptWrapper>
       </template>
@@ -24,11 +23,11 @@
 <script setup>
 import _ from 'lodash'
 import { storeToRefs } from 'pinia'
+import { computed, toRefs } from 'vue'
 import useCreationStore from '@/stores/creation'
 import { OperateType } from '@/constant/creation'
 import { componentMap } from '@/components/fieldComptMap'
 import { VueDraggableNext as Draggable } from 'vue-draggable-next'
-import { computed, onMounted, onUnmounted, ref, toRefs } from 'vue'
 import FieldComptWrapper from '@/components/rendering-cpn/field-compt-wrapper/index.vue'
 const props = defineProps({
   // 需要渲染的组件列表
@@ -44,7 +43,7 @@ const props = defineProps({
 })
 
 const creationStore = useCreationStore()
-const { draggingCompt } = storeToRefs(creationStore)
+const { draggingCompt, clickingCompt } = storeToRefs(creationStore)
 const { comptList, originUser } = toRefs(props)
 
 const isShowTip = computed(() => {
@@ -61,12 +60,6 @@ const emptyTipStyle = computed(() => {
   return null
 })
 
-// 点击组件，添加样式
-const curClickIndex = ref(-1)
-const handleWrapperClick = (index = -1) => {
-  curClickIndex.value = index
-}
-
 // 设置当前组件的使用者
 const setCurComptUser = () => {
   creationStore.setCurOperatedOrigin(originUser.value)
@@ -80,7 +73,7 @@ const handleAddCompt = (curCompt) => {
 }
 
 // 点击组件
-const handleComptClick = (curCompt) => {
+const handleComptClick = (curCompt = null) => {
   creationStore.setCurClickingCompt(curCompt)
 }
 
@@ -93,13 +86,6 @@ const handleWrapperOperation = (type, curIndex, curCompt) => {
     creationStore.setCurSelectedComptList(OperateType.COPY, curIndex, _.cloneDeep(curCompt))
   }
 }
-
-onMounted(() => {
-  document.addEventListener('click', handleWrapperClick)
-})
-onUnmounted(() => {
-  document.removeEventListener('click', handleWrapperClick)
-})
 </script>
 
 <style lang="less" scoped>

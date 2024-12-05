@@ -1,6 +1,6 @@
 <template>
-  <div class="field-compt-wrapper" :class="{ 'wrapper-clicked': isClicked }">
-    <div v-if="isClicked" class="icon">
+  <div class="field-compt-wrapper" :class="{ active: isActive }">
+    <div v-if="isActive" class="icon">
       <span class="iconfont icon-copy" @click.stop="handleOperation(OperateType.COPY)"></span>
       <span class="iconfont icon-delete" @click.stop="handleOperation(OperateType.DELETE)"></span>
     </div>
@@ -23,16 +23,16 @@ const props = defineProps({
     type: Number,
     default: 0
   },
-  curClickIndex: {
-    type: Number,
-    default: -1
+  activeCompt: {
+    type: Object,
+    default: () => ({})
   }
 })
 
 const emit = defineEmits(['operated'])
-const { itemData, curIndex, curClickIndex } = toRefs(props)
+const { itemData, curIndex, activeCompt } = toRefs(props)
 
-const isClicked = computed(() => curClickIndex.value === curIndex.value)
+const isActive = computed(() => activeCompt.value?.id === itemData.value.id)
 
 const handleOperation = (type) => {
   const { installConfirmFn } = $confirm({ message: '确认执行删除操作吗？' })
@@ -54,7 +54,7 @@ const handleOperation = (type) => {
     border: 1px dashed var(--primary-color);
   }
 
-  &.wrapper-clicked {
+  &.active {
     border: 1px dashed var(--primary-color);
   }
 
