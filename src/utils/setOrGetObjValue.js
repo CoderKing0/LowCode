@@ -18,7 +18,7 @@ function setObjValue(obj, path, value) {
 function getObjValue(obj, path) {
   const pathArr = path.split('.')
   return pathArr.reduce((prev, cur) => {
-    return isNumber(prev[cur]) ? prev[Number(cur)] : prev[cur]
+    return isNumber(prev[cur]) ? Number(prev[cur]) : prev[cur]
   }, obj)
 }
 

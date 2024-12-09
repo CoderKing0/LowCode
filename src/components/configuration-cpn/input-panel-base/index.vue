@@ -1,6 +1,6 @@
 <template>
   <div class="input-panel-base">
-    <TitleArea :title="title" level="sixthLevel" />
+    <TitleArea v-if="isShowTitle" :title="title" level="sixthLevel" />
     <component
       ref="inputRef"
       :is="'el-' + el"
@@ -32,6 +32,10 @@ const props = defineProps({
   elProps: {
     type: Object,
     default: () => ({})
+  },
+  isShowTitle: {
+    type: Boolean,
+    default: true
   }
 })
 

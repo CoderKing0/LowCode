@@ -1,12 +1,15 @@
 <template>
   <div class="panel-base">
+    <!-- 标题 -->
     <inputPanelBase el="input" path="title" title="标题" />
+    <!-- 标题描述 -->
     <inputPanelBase
       el="input"
       path="titleDesc"
       title="标题描述"
       :elProps="{ type: 'textarea', placeholder: '请输入标题描述' }"
     />
+    <!-- 输入框提示 -->
     <inputPanelBase
       v-if="isShowTipInput"
       el="input"
@@ -14,9 +17,24 @@
       title="输入框提示"
       :elProps="{ placeholder: '请输入提示文案' }"
     />
+    <!-- 默认值 -->
+    <div v-if="isShowDefaultValue" class="default-value">
+      <TitleArea title="默认值" level="sixthLevel" />
+      <slot name="defaultValue">
+        <inputPanelBase
+          el="input"
+          path="defaultValue"
+          title="默认值"
+          :isShowTitle="false"
+          :elProps="{ placeholder: '请输入默认值' }"
+        />
+      </slot>
+    </div>
+    <!-- 其他自定义配置 -->
     <div class="other">
       <slot></slot>
     </div>
+    <!-- 校验 -->
     <div class="rules" v-if="isShowRules">
       <TitleArea :title="'校验'" level="sixthLevel" />
       <!-- 规则列表 -->
@@ -48,6 +66,10 @@ defineProps({
     default: true
   },
   isShowRules: {
+    type: Boolean,
+    default: true
+  },
+  isShowDefaultValue: {
     type: Boolean,
     default: true
   }

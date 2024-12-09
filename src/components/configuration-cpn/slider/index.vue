@@ -4,7 +4,7 @@
       <template #default>
         <div class="score-range">
           <TitleArea :title="'分值'" level="sixthLevel" />
-          <EditRange v-model:maxValue="maxScore.value" v-model:minValue="minScore.value" />
+          <EditRange v-model:maxValue="maxScore" v-model:minValue="minScore" />
         </div>
         <div class="score-text">
           <TitleArea :title="'显示文本'" level="sixthLevel" />
@@ -34,8 +34,8 @@ import TitleArea from '@/components/common/title-area/index.vue'
 import EditRange from '@/components/configuration-cpn/edit-range/index.vue'
 
 // 使用useComputed包裹的value，才能够使用v-model双向绑定
-const maxScore = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.max')
-const minScore = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.min')
+const maxScore = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.max.value')
+const minScore = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.min.value')
 const maxText = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.max.text')
 const minText = useComputed(ComputedType.OPERATE_STORE_DATA, 'range.min.text')
 

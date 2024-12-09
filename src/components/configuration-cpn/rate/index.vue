@@ -1,6 +1,6 @@
 <template>
   <div class="rate-panel">
-    <PanelBase :isShowTipInput="false">
+    <PanelBase :isShowTipInput="false" :isShowDefaultValue="false">
       <template #default>
         <div class="rate-style">
           <TitleArea title="样式" level="sixthLevel" />
