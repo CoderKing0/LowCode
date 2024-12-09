@@ -18,7 +18,7 @@
       :elProps="{ placeholder: '请输入提示文案' }"
     />
     <!-- 默认值 -->
-    <div v-if="isShowDefaultValue" class="default-value">
+    <template v-if="isShowDefaultValue">
       <TitleArea title="默认值" level="sixthLevel" />
       <slot name="defaultValue">
         <inputPanelBase
@@ -29,13 +29,13 @@
           :elProps="{ placeholder: '请输入默认值' }"
         />
       </slot>
-    </div>
+    </template>
     <!-- 其他自定义配置 -->
     <div class="other">
       <slot></slot>
     </div>
     <!-- 校验 -->
-    <div class="rules" v-if="isShowRules">
+    <div v-if="isShowRules" class="rules">
       <TitleArea :title="'校验'" level="sixthLevel" />
       <!-- 规则列表 -->
       <el-checkbox-group v-model="verifyArr">
